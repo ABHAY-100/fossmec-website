@@ -1,33 +1,10 @@
 import "./globals.css";
-import { Geist, Geist_Mono, Odibee_Sans} from "next/font/google";
-import localFont from 'next/font/local';
+import { Geist, Geist_Mono, Gamja_Flower} from "next/font/google";
 
-const uncutSansVar = localFont({
-  src: '../assets/fonts/UncutSans-Variable.ttf',
-  variable: '--font-uncutSansVar',
-});
-
-const uncutSans = localFont({
-  src: '../assets/fonts/UncutSans-Regular.woff',
-  variable: '--font-uncutSans',
-});
-
-const dmMono = localFont({
-  src: '../assets/fonts/DMMono-Regular.ttf',
-  variable: '--font-dmMono',
-});
-
-const martianMono = localFont({
-  src: '../assets/fonts/MartianMono-Variable.ttf',
-  variable: '--font-martianMono',
-});
-
-
-const odibee = Odibee_Sans({
-  subsets: ["latin"],
+const gamja = Gamja_Flower({
   weight: "400",
-  style: "normal",
-  variable: "--font-odibee",
+  subsets: ["latin"],
+  variable: "--font-gamja",
 });
 
 const geistSans = Geist({
@@ -49,7 +26,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${odibee.variable} ${uncutSansVar.variable} ${uncutSans.variable} ${martianMono.variable} ${dmMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${gamja.variable} antialiased`}
       >
         {children}
       </body>

@@ -10,11 +10,29 @@ const Footer = () => {
           Big ideas, cool projects, and<br /> great people. You in?
         </h2>
 
-        <button className="mt-10 w-[250px] h-[100px] bg-[#F2F7FC] rounded-[25px] flex items-center justify-center">
-        <span className="font-(family-name:--font-odibee) text-[#0C2444] text-5xl">
-            join foss
-          </span>
-        </button>
+        <a
+  href="https://t.me/joinchat/_wHtSpuMBQxhODhl"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group relative mt-10 w-[250px] h-[100px] bg-[#F2F7FC] hover:bg-[#0C2444] border-2 border-white rounded-[25px] flex items-center justify-center overflow-hidden transition-all duration-700 ease-in-out hover:w-[110px]"
+>
+  {/* Text */}
+  <span className="absolute z-10 font-(family-name:--font-gamja) text-[#0C2444] text-5xl transition-opacity duration-300 ease-in-out group-hover:opacity-0">
+    join foss
+  </span>
+
+  {/* GIF Wrapper */}
+  <div className="absolute w-full h-full flex items-center justify-center pointer-events-none z-20">
+  
+    <div className="w-[100px] h-[90px] rounded-[20px] overflow-hidden opacity-0 translate-x-10 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-in-out">
+      <img
+        src="/join-hover.gif"
+        alt="join gif"
+        className="w-full h-full object-cover rounded-[10px]"
+      />
+    </div>
+  </div>
+</a>
       </div>
 
       {/* Bottom Footer Bar */}

@@ -11,10 +11,7 @@ const Footer = () => {
         </h2>
 
         <button className="mt-10 w-[250px] h-[100px] bg-[#F2F7FC] rounded-[25px] flex items-center justify-center">
-          <span
-            style={{ fontFamily: '"Odibee Sans", cursive' }}
-            className="text-[55px] text-[#0C2444] text-center"
-          >
+        <span className="font-(family-name:--font-odibee) text-[#0C2444] text-5xl">
             join foss
           </span>
         </button>
@@ -28,7 +25,7 @@ const Footer = () => {
           <div className="flex space-x-6 font-mono">
             <a href="https://instagram.com/foss_mec" target="_blank" className="hover:text-white transition">Instagram</a>
             <a href="https://linkedin.com/company/fossmec" target="_blank" className="hover:text-white transition">LinkedIn</a>
-            <a href="https://t.me/fossmec" target="_blank" className="hover:text-white transition">Telegram</a>
+            <a href="https://t.me/joinchat/_wHtSpuMBQxhODhl" target="_blank" className="hover:text-white transition">Telegram</a>
           </div>
         </div>
       </div>

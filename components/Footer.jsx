@@ -20,7 +20,7 @@ const Footer = () => {
       {/* Bottom Footer Bar */}
       <div className="w-full h-[130px] relative z-10">
         <div className="absolute inset-0 backdrop-blur-lgs bg-white/2.5 border-t border-t-[#FFFFFF29]" />
-        <div className="relative z-20 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 h-full px-6">
+        <div className="relative z-20 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 text-sm text-gray-500 h-full px-6 py-6">
           <p className="mb-4 md:mb-0 font-mono">FOSS MEC – We build. We share. We learn.</p>
           <div className="flex space-x-6 font-mono">
             <a href="https://instagram.com/foss_mec" target="_blank" className="hover:text-white transition">Instagram</a>

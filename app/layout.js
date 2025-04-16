@@ -1,5 +1,21 @@
 import "./globals.css";
 import { Geist, Geist_Mono, Odibee_Sans} from "next/font/google";
+import localFont from 'next/font/local';
+
+const uncutSansVar = localFont({
+  src: '../assets/fonts/UncutSans-Variable.ttf',
+  variable: '--font-uncutSansVar',
+});
+
+const uncutSans = localFont({
+  src: '../assets/fonts/UncutSans-Regular.woff',
+  variable: '--font-uncutSans',
+});
+
+const dmMono = localFont({
+  src: '../assets/fonts/DMMono-Regular.ttf',
+  variable: '--font-dmMono',
+});
 
 const odibee = Odibee_Sans({
   subsets: ["latin"],
@@ -27,7 +43,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${odibee.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${odibee.variable} ${uncutSansVar.variable} ${uncutSans.variable} ${dmMono.variable} antialiased`}
       >
         {children}
       </body>

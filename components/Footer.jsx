@@ -22,25 +22,25 @@ const Footer = () => {
 
         {/* Button */}
         <a
-  href="https://t.me/joinchat/_wHtSpuMBQxhODhl"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="group relative mt-10 w-[250px] h-[100px] bg-[#F2F7FC] border-2 border-white rounded-[25px] flex items-center justify-center pl-6 pr-4 overflow-hidden transition-all duration-200 ease-in-out hover:bg-[#0C2444] hover:w-[300px]"
->
-  {/* Text */}
-  <span className="[font-family:var(--font-gamja)] z-10 text-[#0C2444] group-hover:text-white text-5xl transition-all duration-300 ease-in-out transform group-hover:translate-x-[-50px]">
-    join foss
-  </span>
+          href="https://t.me/joinchat/_wHtSpuMBQxhODhl"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative mt-10 w-[250px] h-[100px] bg-[#F2F7FC] border-2 border-white rounded-[25px] flex items-center justify-center pl-6 pr-4 overflow-hidden transition-all duration-200 ease-in-out hover:bg-[#0C2444] hover:w-[300px]"
+        >
+          {/* Text */}
+          <span className="[font-family:var(--font-gamja)] z-10 text-[#0C2444] group-hover:text-white text-5xl transition-all duration-300 ease-in-out transform group-hover:translate-x-[-50px]">
+            join foss
+          </span>
 
-  {/* GIF Slide In */}
-  <div className="absolute top-1/2 -translate-y-1/2 right-[-120px] w-[80px] h-[72px] rounded-[10px] overflow-hidden group-hover:right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out">
-    <img
-      src="/join-hover.gif"
-      alt="join gif"
-      className="w-full h-full object-cover rounded-[10px]"
-    />
-  </div>
-</a>
+          {/* GIF Slide In */}
+          <div className="absolute top-1/2 -translate-y-1/2 right-[-120px] w-[80px] h-[72px] rounded-[10px] overflow-hidden group-hover:right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+            <img
+              src="/join-hover.gif"
+              alt="join gif"
+              className="w-full h-full object-cover rounded-[10px]"
+            />
+          </div>
+        </a>
       </div>
 
       {/* Footer Bottom Bar */}

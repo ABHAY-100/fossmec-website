@@ -1,5 +1,27 @@
 import "./globals.css";
 import { Geist, Geist_Mono, Gamja_Flower} from "next/font/google";
+import localFont from 'next/font/local';
+
+const uncutSansVar = localFont({
+  src: '../assets/fonts/UncutSans-Variable.ttf',
+  variable: '--font-uncutSansVar',
+});
+
+const uncutSans = localFont({
+  src: '../assets/fonts/UncutSans-Regular.woff',
+  variable: '--font-uncutSans',
+});
+
+const dmMono = localFont({
+  src: '../assets/fonts/DMMono-Regular.ttf',
+  variable: '--font-dmMono',
+});
+
+const martianMono = localFont({
+  src: '../assets/fonts/MartianMono-Variable.ttf',
+  variable: '--font-martianMono',
+});
+
 
 const gamja = Gamja_Flower({
   weight: "400",
@@ -26,7 +48,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${gamja.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${gamja.variable} ${uncutSansVar.variable} ${uncutSans.variable} ${martianMono.variable} ${dmMono.variable} antialiased`}
       >
         {children}
       </body>

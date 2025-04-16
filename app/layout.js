@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Geist, Geist_Mono, Odibee_Sans} from "next/font/google";
+import { Geist, Geist_Mono, Gamja_Flower} from "next/font/google";
 import localFont from 'next/font/local';
 
 const uncutSansVar = localFont({
@@ -23,11 +23,10 @@ const martianMono = localFont({
 });
 
 
-const odibee = Odibee_Sans({
-  subsets: ["latin"],
+const gamja = Gamja_Flower({
   weight: "400",
-  style: "normal",
-  variable: "--font-odibee",
+  subsets: ["latin"],
+  variable: "--font-gamja",
 });
 
 const geistSans = Geist({
@@ -49,7 +48,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${odibee.variable} ${uncutSansVar.variable} ${uncutSans.variable} ${martianMono.variable} ${dmMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${gamja.variable} ${uncutSansVar.variable} ${uncutSans.variable} ${martianMono.variable} ${dmMono.variable} antialiased`}
       >
         {children}
       </body>

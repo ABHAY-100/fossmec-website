@@ -1,5 +1,5 @@
 import About from "@/components/About";
-import Events from "@/components/Events";
+import Events from "@/components/events/Events";
 import Footer from "@/components/Footer";
 import Landing from "@/components/Landing";
 import Marquee from "@/components/Marquee";

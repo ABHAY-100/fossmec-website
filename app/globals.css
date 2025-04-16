@@ -1,7 +1,4 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -46,6 +43,10 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --font-dm-mono: var(--font-dmMono);
+  --font-martian-mono: var(--font-martianMono);
+  --font-uncut-sans-var: var(--font-uncutSansVar);
+  --font-uncut-sans: var(--font-uncutSans);
 }
 
 :root {

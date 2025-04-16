@@ -9,7 +9,7 @@ import Team from "@/components/Team";
 
 const page = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col font-dm-mono">
       <Navbar />
       <div>
         <Landing />

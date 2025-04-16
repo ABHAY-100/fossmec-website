@@ -17,6 +17,12 @@ const dmMono = localFont({
   variable: '--font-dmMono',
 });
 
+const martianMono = localFont({
+  src: '../assets/fonts/MartianMono-Variable.ttf',
+  variable: '--font-martianMono',
+});
+
+
 const odibee = Odibee_Sans({
   subsets: ["latin"],
   weight: "400",
@@ -42,11 +48,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${odibee.variable} ${uncutSansVar.variable} ${uncutSans.variable} ${dmMono.variable} antialiased`}
+      <bodyuncutSans
+        className={`${geistSans.variable} ${geistMono.variable} ${odibee.variable} ${uncutSansVar.variable} ${uncutSans.variable} ${martianMono.variable} ${dmMono.variable} antialiased`}
       >
         {children}
-      </body>
+      </bodyuncutSans>
     </html>
   );
 }

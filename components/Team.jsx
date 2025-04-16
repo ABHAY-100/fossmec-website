@@ -94,7 +94,10 @@ const gridData = [
 
 const Team = () => {
   return (
-    <div className="team min-h-screen flex flex-col items-center relative justify-center ">
+    <div
+      className="min-h-screen flex flex-col items-center relative justify-center"
+      id="team"
+    >
       <Image src={bg} alt="bg" fill className="object-cover" />
       <div className="w-full relative h-fit flex mt-40 text-center">
         <div className="xl:w-[20%] sm:w-[15%]" />

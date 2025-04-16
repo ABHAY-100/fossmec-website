@@ -48,11 +48,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <bodyuncutSans
+      <body
         className={`${geistSans.variable} ${geistMono.variable} ${odibee.variable} ${uncutSansVar.variable} ${uncutSans.variable} ${martianMono.variable} ${dmMono.variable} antialiased`}
       >
         {children}
-      </bodyuncutSans>
+      </body>
     </html>
   );
 }

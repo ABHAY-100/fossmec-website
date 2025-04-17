@@ -18,7 +18,7 @@ const Events = () => {
   const getInitialPositions = () => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       return [
-        { x: 20, y: 20 },    
+        { x: 20, y: 20 },    // mobile positions
         { x: 20, y: 370 },   
         { x: 20, y: 720 },
         { x: 20, y: 1070 },
@@ -29,7 +29,7 @@ const Events = () => {
     }
    
     return [
-      { x: 20, y: 20 },      
+      { x: 20, y: 20 },     
       { x: 140, y: 60 },    
       { x: 260, y: 100 },    
       { x: 380, y: 140 },    
@@ -129,29 +129,29 @@ const Events = () => {
 
         <div className="relative mt-8">
           {isMobile ? (
-            <Carousel className="w-full max-w-full">
-              <CarouselContent>
-                {cards.map((card) => (
-                  <CarouselItem key={card.id} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="p-1 h-full flex items-center justify-center">
-                      <div className="relative w-full h-[320px]">
+            <div className="px-2">
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {cards.map((card) => (
+                    <CarouselItem key={card.id} className="w-full">
+                      <div className="p-1 flex items-center justify-center h-[320px]">
                         <EventCard
                           id={card.id}
                           title={card.title}
                           borderColor={card.borderColor}
                           position={{ x: 0, y: 0 }}
-                          onDragEnd={() => {}}
+                          onDragEnd={null}
                         />
                       </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <div className="flex justify-center mt-4">
-                <CarouselPrevious className="static mx-2 transform-none" />
-                <CarouselNext className="static mx-2 transform-none" />
-              </div>
-            </Carousel>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <div className="flex justify-center mt-4">
+                  <CarouselPrevious className="static mx-2 transform-none" />
+                  <CarouselNext className="static mx-2 transform-none" />
+                </div>
+              </Carousel>
+            </div>
           ) : (
             <div className="relative min-h-[600px] md:min-h-[800px] lg:min-h-[600px]">
               {cards.map((card) => (

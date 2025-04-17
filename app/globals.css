@@ -45,7 +45,7 @@
   --radius-xl: calc(var(--radius) + 4px);
   --font-dm-mono: var(--font-dmMono);
   --font-martian-mono: var(--font-martianMono);
-  --font-uncut-sans-var: var(--font-uncutSansVar);
+  --font-uncut-sans-var: var(--font-uncutSans);
   --font-uncut-sans: var(--font-uncutSans);
 }
 
@@ -126,6 +126,10 @@
   body {
     @apply bg-our-bg text-our-white;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .perspective {

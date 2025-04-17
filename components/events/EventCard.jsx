@@ -81,8 +81,8 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd }) => {
         position: 'absolute',
         left: currentPosition.x,
         top: currentPosition.y,
-        width: "400px",  // Fixed width
-        height: "320px", // Fixed height
+        width: typeof window !== 'undefined' && window.innerWidth < 768 ? "calc(100vw - 40px)" : "400px",
+        height: typeof window !== 'undefined' && window.innerWidth < 768 ? "300px" : "320px",
         opacity: isDragging ? 0.8 : 1,
         zIndex: isDragging ? 1000 : 1,
         cursor: isDragging ? "grabbing" : "grab",

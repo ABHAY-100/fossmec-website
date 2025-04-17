@@ -129,11 +129,11 @@ const Events = () => {
     <div className="min-h-screen relative px-4 md:px-8 flex flex-col" id="events">
 
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col h-full py-8">
-        <h2 className="text-3xl md:text-4xl font-semibold italic uppercase mx-auto text-center mt-25 mb-6 font-uncut-sans-var tracking-tight leading-none bg-gradient-to-r from-[#C0AE42] via-[#379CA2] to-[#2C7FDC] bg-clip-text text-transparent">
+        <h2 className="text-3xl md:text-4xl font-semibold italic uppercase text-left px-2 sm:px-16 lg:px-28 mt-25 mb-6 font-uncut-sans tracking-tight leading-none bg-gradient-to-r from-[#C0AE42] via-[#379CA2] to-[#2C7FDC] bg-clip-text text-transparent">
           &lt;What abt events?&gt;
         </h2>
 
-        <p className="font-dm-mono text-white text-lg md:text-2xl mx-auto mb-8 font-normal tracking-tight leading-[120%] max-w-[1000px] mt-10 px-4 text-center">
+        <p className="font-dm-mono text-white text-lg md:text-2xl mx-auto mb-8 font-normal tracking-tight leading-[120%] max-w-[1000px] mt-10 px-4 text-left">
           Our events focus on open source, featuring expert talks, practical
           workshops, and collaborative spaces for students and tech enthusiasts.
         </p>

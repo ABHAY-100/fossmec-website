@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`flex flex-col px-5 sm:px-5 md:px-15 py-2 fixed top-0 left-0 w-full z-50 transition-all duration-300 
+      className={`flex flex-col px-5 md:px-15 py-2 fixed top-0 left-0 w-full z-50 transition-all duration-300 
         ${mobileMenuOpen ? "h-auto" : "h-[89px]"}
         ${
           scrolled && !mobileMenuOpen
@@ -37,11 +37,7 @@ const Navbar = () => {
     >
       <div className="flex items-center justify-between w-full">
         <a href="#home">
-          <Image
-            src={logo}
-            alt="FOSSMEC Logo"
-            className="h-[85px] w-[85px] md:h-[85px] md:w-[85px]"
-          />
+          <Image src={logo} alt="FOSSMEC Logo" className="h-[85px] w-[85px]" />
         </a>
 
         {/* Mobile menu button */}

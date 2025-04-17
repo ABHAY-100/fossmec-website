@@ -8,26 +8,30 @@ const Events = () => {
   const getInitialPositions = () => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       return [
-        { x: 20, y: 50 },
-        { x: 20, y: 400 },
-        { x: 20, y: 750 },
-        { x: 20, y: 1100 },
-        { x: 20, y: 1450 },
+        { x: 20, y: 20 },    // moved up from y: 50
+        { x: 20, y: 370 },   // 350px gap
+        { x: 20, y: 720 },
+        { x: 20, y: 1070 },
+        { x: 20, y: 1420 },
+        { x: 20, y: 1770 },
+        { x: 20, y: 2120 },
       ];
     }
     return [
-      { x: 50, y: 50 },
-      { x: 200, y: 100 },
-      { x: 350, y: 150 },
-      { x: 500, y: 200 },
-      { x: 650, y: 250 },
+      { x: 50, y: 20 },     // moved up from y: 50
+      { x: 200, y: 60 },    // adjusted spacing
+      { x: 350, y: 100 },
+      { x: 500, y: 140 },
+      { x: 650, y: 180 },
+      { x: 800, y: 220 },
+      { x: 950, y: 260 },
     ];
   };
 
   const [cards, setCards] = useState([
     {
       id: 1,
-      title: "Genisis",
+      title: "IndiaFoss 4.0",
       borderColor: "border-yellow-500/60",
       position: getInitialPositions()[0],
     },
@@ -39,7 +43,7 @@ const Events = () => {
     },
     {
       id: 3,
-      title: "Devsprint",
+      title: "Build It Up",
       borderColor: "border-teal-500/60",
       position: getInitialPositions()[2],
     },
@@ -51,9 +55,21 @@ const Events = () => {
     },
     {
       id: 5,
-      title: "Hacktoberfest",
+      title: "PravConf",
       borderColor: "border-orange-500/60",
       position: getInitialPositions()[4],
+    },
+    {
+      id: 6,
+      title: "Let's Git It",
+      borderColor: "border-yellow-500/60",
+      position: getInitialPositions()[5],
+    },
+    {
+      id: 7,
+      title: "Codeum Reparo",
+      borderColor: "border-blue-500/60",
+      position: getInitialPositions()[6],
     },
   ]);
 

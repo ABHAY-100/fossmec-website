@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`flex flex-col px-5 md:px-15 py-2 fixed top-0 left-0 w-full z-50 transition-all duration-300 
+      className={`flex flex-col px-5 md:px-15 fixed top-0 left-0 w-full z-50 transition-all duration-300 
         ${mobileMenuOpen ? "h-auto" : "h-[89px]"}
         ${
           scrolled && !mobileMenuOpen
@@ -114,7 +114,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu items integrated into navbar */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ${
           mobileMenuOpen

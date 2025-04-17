@@ -11,7 +11,6 @@ const Team = () => {
       className="min-h-screen flex flex-col items-center relative justify-center"
       id="team"
     >
-      <Image src={bg} alt="bg" fill className="object-cover" />
       <div className="w-full relative h-fit flex mt-40 text-center">
         <div className="xl:w-[20%] sm:w-[15%]" />
         <div className="w-full flex  justify-center sm:justify-start">

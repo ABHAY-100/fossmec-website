@@ -8,9 +8,6 @@ const About = () => {
       className="min-h-screen flex flex-col items-center relative justify-center"
       id="about"
     >
-      {/* Flipped Grid Background */}
-      <Image src={bg} alt="bg" fill className="object-cover rotate-180" />
-
       {/* Content Wrapper */}
       <div className="relative z-0 w-full max-w-6xl px-6 sm:px-12 mt-40 flex flex-col gap-6">
         {/* Heading */}

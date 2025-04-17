@@ -8,14 +8,6 @@ import { FaLinkedin } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="relative w-full flex flex-col items-center justify-center text-white overflow-hidden">
-      {/* Grid Background */}
-      <Image
-        src={bg}
-        alt="Background Grid"
-        fill
-        className="object-cover z-[-1]"
-        priority
-      />
 
       {/* Main Section */}
       <div className="min-h-[calc(100vh-264px)] w-full flex flex-col items-center justify-center text-center py-16 z-10">

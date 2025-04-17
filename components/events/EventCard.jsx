@@ -75,33 +75,30 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd }) => {
   return (
     <div
       ref={elementRef}
-      className={`absolute transition-all duration-300 ${
-        !isDragging ? 'hover:-translate-y-2 hover:scale-105' : ''
-      }`}
+      className="relative"
       onMouseDown={handleMouseDown}
       style={{
+        position: 'absolute',
         left: currentPosition.x,
         top: currentPosition.y,
-        width: "400px",
-        height: "320px",
+        width: "400px",  // Fixed width
+        height: "320px", // Fixed height
         opacity: isDragging ? 0.8 : 1,
         zIndex: isDragging ? 1000 : 1,
         cursor: isDragging ? "grabbing" : "grab",
-        transform: isDragging ? 'none' : undefined
       }}
     >
-      <div className="relative rounded overflow-hidden w-full h-full [perspective:1000px]">
+      <div className="relative w-full h-full [perspective:1000px]">
         <div
-          className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
+          className={`relative w-full h-full transition-all duration-500 [transform-style:preserve-3d] ${
             isFlipped ? "[transform:rotateY(180deg)]" : ""
           }`}
         >
           {/* Front of card */}
           <div className="absolute w-full h-full [backface-visibility:hidden]">
-            <div
-              className={`w-full h-full bg-[#121f38]/80 border rounded ${borderColor}`}
-            >
-              <div className="h-3/4">
+            <div className="w-full h-full flex flex-col justify-between pt-6 px-6 pb-3.5 group items-center transition-all duration-[0.75s] border border-white/10 hover:border-[#ACAB4F]/38 relative before:absolute before:min-h-[10px] before:min-w-[10px] before:transition-all before:duration-[0.75s] before:border-white/10 hover:before:border-[#ACAB4F] after:transition-all after:duration-[0.75s] after:border-white/10 hover:after:border-[#ACAB4F] before:border-t-[3px] before:border-l-[3px] before:top-[-2px] before:left-[-2px] after:absolute after:h-[10px] after:w-[10px] after:border-t-[3px] after:border-r-[3px] after:top-[-2px] after:right-[-2px] backdrop-blur-[1px] bg-[#121f38]/80">
+              <div className="absolute h-full w-full before:absolute before:min-h-[10px] z-20 top-0 before:min-w-[10px] before:transition-all before:duration-[0.75s] before:border-white/10 group-hover:before:border-[#ACAB4F] after:transition-all after:duration-[0.75s] after:border-white/10 group-hover:after:border-[#ACAB4F] before:border-b-[3px] before:border-l-[3px] before:bottom-[-2px] before:left-[-2px] after:absolute after:h-[10px] after:w-[10px] after:border-b-[3px] after:border-r-[3px] after:bottom-[-2px] after:right-[-2px]" />
+              <div className="h-[75%] w-full relative">
                 <img
                   src="/assets/events/eventcard.jpeg"
                   alt="Event background"
@@ -109,45 +106,36 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd }) => {
                   draggable="false"
                 />
               </div>
-              <div className="p-4 relative">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-2xl text-white font-uncut-sans">
-                    {title}
-                  </h3>
-                  <div className="cursor-move">
-                    <TbGripVertical className="text-white text-xl" />
-                  </div>
+              <div className="relative w-full flex justify-between items-center mt-4">
+                <h2 className="font-uncut-sans font-medium text-[18px] leading-[20px] tracking-[0px] text-white/80">
+                  {title}
+                </h2>
+                <div className="cursor-move text-white/80">
+                  <TbGripVertical className="text-xl" />
                 </div>
-                <button
-                  onClick={() => setIsFlipped(!isFlipped)}
-                  className="absolute bottom-4 right-4 text-white hover:text-gray-300 transition-colors p-2 bg-black/30 rounded-full hover:bg-black/50"
-                >
-                  <MdFlip size={28} />
-                </button>
               </div>
             </div>
           </div>
 
           {/* Back of card */}
           <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)]">
-            <div
-              className={`w-full h-full bg-[#121f38] border ${borderColor}`}
-            >
-              <div className="flex items-center justify-center h-full p-4 relative">
-                <h3 className="text-3xl text-white font-uncut-sans">
+            <div className="w-full h-full flex flex-col justify-between pt-6 px-6 pb-3.5 group items-center transition-all duration-[0.75s] border border-white/10 hover:border-[#ACAB4F]/38 relative before:absolute before:min-h-[10px] before:min-w-[10px] before:transition-all before:duration-[0.75s] before:border-white/10 hover:before:border-[#ACAB4F] after:transition-all after:duration-[0.75s] after:border-white/10 hover:after:border-[#ACAB4F] before:border-t-[3px] before:border-l-[3px] before:top-[-2px] before:left-[-2px] after:absolute after:h-[10px] after:w-[10px] after:border-t-[3px] after:border-r-[3px] after:top-[-2px] after:right-[-2px] backdrop-blur-[1px] bg-[#121f38]">
+              <div className="absolute h-full w-full before:absolute before:min-h-[10px] z-20 top-0 before:min-w-[10px] before:transition-all before:duration-[0.75s] before:border-white/10 group-hover:before:border-[#ACAB4F] after:transition-all after:duration-[0.75s] after:border-white/10 group-hover:after:border-[#ACAB4F] before:border-b-[3px] before:border-l-[3px] before:bottom-[-2px] before:left-[-2px] after:absolute after:h-[10px] after:w-[10px] after:border-b-[3px] after:border-r-[3px] after:bottom-[-2px] after:right-[-2px]" />
+              <div className="relative grow w-full flex flex-col items-center justify-center">
+                <h3 className="text-2xl text-white/80 font-uncut-sans">
                   Hello FOSSMEC!
                 </h3>
-                <button
-                  onClick={() => setIsFlipped(!isFlipped)}
-                  className="absolute bottom-4 right-4 text-white hover:text-gray-300 transition-colors p-2 bg-black/30 rounded-full hover:bg-black/50"
-                >
-                  <MdFlip size={24} />
-                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <button
+        onClick={() => setIsFlipped(!isFlipped)}
+        className="absolute bottom-4 right-4 text-white/80 hover:text-white transition-colors z-30"
+      >
+        <MdFlip size={20} />
+      </button>
     </div>
   );
 };

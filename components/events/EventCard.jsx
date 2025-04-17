@@ -75,7 +75,9 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd }) => {
   return (
     <div
       ref={elementRef}
-      className="absolute"
+      className={`absolute transition-all duration-300 ${
+        !isDragging ? 'hover:-translate-y-2 hover:scale-105' : ''
+      }`}
       onMouseDown={handleMouseDown}
       style={{
         left: currentPosition.x,
@@ -84,7 +86,8 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd }) => {
         height: "320px",
         opacity: isDragging ? 0.8 : 1,
         zIndex: isDragging ? 1000 : 1,
-        cursor: isDragging ? "grabbing" : "grab"
+        cursor: isDragging ? "grabbing" : "grab",
+        transform: isDragging ? 'none' : undefined
       }}
     >
       <div className="relative rounded overflow-hidden w-full h-full [perspective:1000px]">

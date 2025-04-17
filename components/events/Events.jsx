@@ -115,7 +115,6 @@ const Events = () => {
 
   return (
     <div className="min-h-screen relative px-4 md:px-8 flex flex-col" id="events">
-      <Image src={bg} alt="bg" fill className="object-cover" />
 
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col h-full py-8">
         <h2 className="text-3xl md:text-4xl font-semibold italic uppercase mx-auto text-center mt-25 mb-6 font-uncut-sans-var tracking-tight leading-none bg-gradient-to-r from-[#C0AE42] via-[#379CA2] to-[#2C7FDC] bg-clip-text text-transparent">

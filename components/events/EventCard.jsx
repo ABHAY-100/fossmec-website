@@ -66,11 +66,13 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   
   const handlePositionChange = (newPosition) => {
-    onDragEnd(id, newPosition);
+    if (onDragEnd) {
+      onDragEnd(id, newPosition);
+    }
   };
 
   const { elementRef, position: currentPosition, handleMouseDown, isDragging } = 
-    useDraggable(position, handlePositionChange);
+    useDraggable(position || { x: 0, y: 0 }, handlePositionChange);
 
   const getBackContent = (id) => {
     switch (id) {
@@ -83,7 +85,7 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd }) => {
         return "Representatives from FOSS MEC actively participated in IndiaFOSS 4.0, a prestigious Free and Open Source Software (FOSS) conference held in Bangalore on September 7th and 8th, 2024. The event provided an excellent platform for FOSS MEC to showcase its initiatives and engage with the broader FOSS community."
 
       case 5:
-        return "FOSSMEC hosted PravApp’s genesis conference at Govt. Model Engineering College on 1st and 2nd March, where speaker sessions and small contribution sprints were conducted, sessions were mostly of privacy focused messaging, fediverse, how and why prav was founded in the first place. Inshort PravConf was a gathering of users, developers and volunteers in the Prav cooperative aiming to free users from vendor lock-in and invasion of privacy."
+        return "FOSSMEC hosted PravApp's genesis conference at Govt. Model Engineering College on 1st and 2nd March, where speaker sessions and small contribution sprints were conducted, sessions were mostly of privacy focused messaging, fediverse, how and why prav was founded in the first place. Inshort PravConf was a gathering of users, developers and volunteers in the Prav cooperative aiming to free users from vendor lock-in and invasion of privacy."
 
       case 3:
         return "FOSS MEC hosted Build It Up on August 21–22 at CCF Hall, attracting 75 participants. Led by Joel K George (intern at ragas.io), the session guided attendees through building a full-stack web app using Next.js and Supabase. Designed for all skill levels, it offered hands-on learning in JavaScript and SQL with a focus on simplicity and engagement."
@@ -98,21 +100,28 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd }) => {
     }
   };
 
+  // Determine if the card is in carousel or draggable mode
+  const isInCarousel = !onDragEnd || position === undefined;
+
   return (
     <div
       ref={elementRef}
-      className="relative"
-      onMouseDown={handleMouseDown}
-      style={{
-        position: 'absolute',
-        left: currentPosition.x,
-        top: currentPosition.y,
-        width: typeof window !== 'undefined' && window.innerWidth < 768 ? "calc(100vw - 40px)" : "400px",
-        height: typeof window !== 'undefined' && window.innerWidth < 768 ? "300px" : "320px",
-        opacity: isDragging ? 0.8 : 1,
-        zIndex: isDragging ? 1000 : 1,
-        cursor: isDragging ? "grabbing" : "grab",
-      }}
+      className={`relative ${isInCarousel ? "w-full h-full" : ""}`}
+      onMouseDown={!isInCarousel ? handleMouseDown : undefined}
+      style={
+        isInCarousel 
+          ? {} 
+          : {
+              position: 'absolute',
+              left: currentPosition.x,
+              top: currentPosition.y,
+              width: typeof window !== 'undefined' && window.innerWidth < 768 ? "calc(100vw - 40px)" : "400px",
+              height: typeof window !== 'undefined' && window.innerWidth < 768 ? "300px" : "320px",
+              opacity: isDragging ? 0.8 : 1,
+              zIndex: isDragging ? 1000 : 1,
+              cursor: isDragging ? "grabbing" : "grab",
+            }
+      }
     >
       <div className="relative w-full h-full [perspective:1000px]">
         <div
@@ -136,9 +145,11 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd }) => {
                 <h2 className="font-uncut-sans font-medium text-[18px] leading-[20px] tracking-[0px] text-white/80">
                   {title}
                 </h2>
-                <div className="cursor-move text-white/80">
-                  <TbGripVertical className="text-xl" />
-                </div>
+                {!isInCarousel && (
+                  <div className="cursor-move text-white/80">
+                    <TbGripVertical className="text-xl" />
+                  </div>
+                )}
               </div>
             </div>
           </div>

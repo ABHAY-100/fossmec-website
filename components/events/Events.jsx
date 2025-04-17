@@ -3,13 +3,23 @@ import React, { useState, useEffect } from "react";
 import { EventCard } from "./EventCard";
 import Image from "next/image";
 import bg from "@/assets/bg.svg";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import useMediaQuery from "@/hooks/use-media-query";
 
 const Events = () => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   const getInitialPositions = () => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       return [
-        { x: 20, y: 20 },    // moved up from y: 50
-        { x: 20, y: 370 },   // 350px gap
+        { x: 20, y: 20 },    // mobile positions
+        { x: 20, y: 370 },   
         { x: 20, y: 720 },
         { x: 20, y: 1070 },
         { x: 20, y: 1420 },
@@ -17,14 +27,15 @@ const Events = () => {
         { x: 20, y: 2120 },
       ];
     }
+    // Adjusted positions for laptop view - shifted left
     return [
-      { x: 50, y: 20 },     // moved up from y: 50
-      { x: 200, y: 60 },    // adjusted spacing
-      { x: 350, y: 100 },
-      { x: 500, y: 140 },
-      { x: 650, y: 180 },
-      { x: 800, y: 220 },
-      { x: 950, y: 260 },
+      { x: 20, y: 20 },      // shifted from x: 50 to x: 20
+      { x: 140, y: 60 },     // shifted from x: 200 to x: 140
+      { x: 260, y: 100 },    // shifted from x: 350 to x: 260
+      { x: 380, y: 140 },    // shifted from x: 500 to x: 380
+      { x: 500, y: 180 },    // shifted from x: 650 to x: 500
+      { x: 620, y: 220 },    // shifted from x: 800 to x: 620
+      { x: 740, y: 260 },    // shifted from x: 950 to x: 740
     ];
   };
 
@@ -116,17 +127,45 @@ const Events = () => {
           workshops, and collaborative spaces for students and tech enthusiasts.
         </p>
 
-        <div className="relative min-h-[600px] mt-8 md:min-h-[800px] lg:min-h-[600px]">
-          {cards.map((card) => (
-            <EventCard
-              key={card.id}
-              id={card.id}
-              title={card.title}
-              borderColor={card.borderColor}
-              position={card.position}
-              onDragEnd={handleDragEnd}
-            />
-          ))}
+        <div className="relative mt-8">
+          {isMobile ? (
+            <Carousel className="w-full max-w-full">
+              <CarouselContent>
+                {cards.map((card) => (
+                  <CarouselItem key={card.id} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1 h-full flex items-center justify-center">
+                      <div className="relative w-full h-[320px]">
+                        <EventCard
+                          id={card.id}
+                          title={card.title}
+                          borderColor={card.borderColor}
+                          position={{ x: 0, y: 0 }}
+                          onDragEnd={() => {}}
+                        />
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex justify-center mt-4">
+                <CarouselPrevious className="static mx-2 transform-none" />
+                <CarouselNext className="static mx-2 transform-none" />
+              </div>
+            </Carousel>
+          ) : (
+            <div className="relative min-h-[600px] md:min-h-[800px] lg:min-h-[600px]">
+              {cards.map((card) => (
+                <EventCard
+                  key={card.id}
+                  id={card.id}
+                  title={card.title}
+                  borderColor={card.borderColor}
+                  position={card.position}
+                  onDragEnd={handleDragEnd}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

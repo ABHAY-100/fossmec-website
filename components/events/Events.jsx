@@ -18,7 +18,7 @@ const Events = () => {
   const getInitialPositions = () => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       return [
-        { x: 20, y: 20 },    // mobile positions
+        { x: 20, y: 20 },    
         { x: 20, y: 370 },   
         { x: 20, y: 720 },
         { x: 20, y: 1070 },
@@ -27,15 +27,15 @@ const Events = () => {
         { x: 20, y: 2120 },
       ];
     }
-    // Adjusted positions for laptop view - shifted left
+   
     return [
-      { x: 20, y: 20 },      // shifted from x: 50 to x: 20
-      { x: 140, y: 60 },     // shifted from x: 200 to x: 140
-      { x: 260, y: 100 },    // shifted from x: 350 to x: 260
-      { x: 380, y: 140 },    // shifted from x: 500 to x: 380
-      { x: 500, y: 180 },    // shifted from x: 650 to x: 500
-      { x: 620, y: 220 },    // shifted from x: 800 to x: 620
-      { x: 740, y: 260 },    // shifted from x: 950 to x: 740
+      { x: 20, y: 20 },      
+      { x: 140, y: 60 },    
+      { x: 260, y: 100 },    
+      { x: 380, y: 140 },    
+      { x: 500, y: 180 },    
+      { x: 620, y: 220 },    
+      { x: 740, y: 260 },    
     ];
   };
 

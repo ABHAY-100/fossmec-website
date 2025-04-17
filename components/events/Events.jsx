@@ -158,7 +158,7 @@ const Events = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <div className="flex justify-center mt-4">
+                <div className="flex justify-center mt-8">
                   <CarouselPrevious className="static mx-2 transform-none" />
                   <CarouselNext className="static mx-2 transform-none" />
                 </div>

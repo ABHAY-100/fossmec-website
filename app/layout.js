@@ -8,7 +8,7 @@ const uncutSansVar = localFont({
 });
 
 const offbit = localFont({
-  src: '../assets/fonts/Offbit-Bold.ttf',
+  src: '../assets/fonts/OffBit-Bold.ttf',
   variable: '--font-offbit',
 });
 

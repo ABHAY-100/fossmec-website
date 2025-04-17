@@ -5,6 +5,7 @@ import Landing from "@/components/Landing";
 import Marquee from "@/components/Marquee";
 import Navbar from "@/components/Navbar";
 import Team from "@/components/Team";
+import LenisWrapper from "@/components/LenisWrapper";
 
 const page = () => {
   return (
@@ -13,11 +14,13 @@ const page = () => {
         <Navbar />
       </div>
       <div>
-        <Landing />
-        <About />
-        <Events />
-        <Team />
-        <Marquee />
+        <LenisWrapper>
+          <Landing />
+          <About />
+          <Events />
+          <Team />
+          <Marquee />
+        </LenisWrapper>
       </div>
       <Footer />
     </div>

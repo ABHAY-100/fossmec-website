@@ -26,14 +26,14 @@ export const TEAM = [
     id: 1,
     value: "Item 1",
     name: "Nikhil",
-    position: "Chairperson",
+    position: "Chair",
     img: nikhil,
   },
   {
     id: 2,
     value: "Item 2",
     name: "Varun",
-    position: "Vice Chairperson",
+    position: "Vice Chair",
     img: varun,
   },
   {
@@ -95,7 +95,7 @@ export const TEAM = [
   {
     id: 11,
     value: "Item 11",
-    name: "Sheril Dominic",
+    name: "Sheril",
     position: "Events Sub-Head",
     img: sheril,
   },

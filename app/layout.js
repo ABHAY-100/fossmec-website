@@ -7,6 +7,11 @@ const uncutSansVar = localFont({
   variable: '--font-uncutSansVar',
 });
 
+const offbit = localFont({
+  src: '../assets/fonts/Offbit-Bold.ttf',
+  variable: '--font-offbit',
+});
+
 const uncutSans = localFont({
   src: '../assets/fonts/UncutSans-Regular.woff',
   variable: '--font-uncutSans',
@@ -48,7 +53,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${gamja.variable} ${uncutSansVar.variable} ${uncutSans.variable} ${martianMono.variable} ${dmMono.variable} antialiased`}
+        className={`${geistSans.variable} ${offbit.variable} ${geistMono.variable} ${gamja.variable} ${uncutSansVar.variable} ${uncutSans.variable} ${martianMono.variable} ${dmMono.variable} antialiased`}
       >
         {children}
       </body>

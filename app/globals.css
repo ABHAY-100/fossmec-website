@@ -6,8 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-our-bg: #0C2444;
-  --color-our-white: #F2F7FC;
+  --color-our-bg: #0c2444;
+  --color-our-white: #f2f7fc;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -118,9 +118,6 @@
   --sidebar-ring: oklch(0.552 0.016 285.938);
 }
 
-
-
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -129,7 +126,6 @@
     @apply bg-our-bg text-our-white;
   }
 }
-
 
 .perspective {
   perspective: 2000px;
@@ -152,7 +148,6 @@
   transform: rotateY(180deg);
 }
 
-/* Add a new class for the initial state */
 .rotate-y-0 {
   transform: rotateY(0deg);
 }

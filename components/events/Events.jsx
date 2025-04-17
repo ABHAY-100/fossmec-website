@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { EventCard } from "./EventCard";
-import Image from "next/image";
-import bg from "@/assets/bg.svg";
 import {
   Carousel,
   CarouselContent,
@@ -11,6 +9,13 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import useMediaQuery from "@/hooks/use-media-query";
+import IndiaFoss from "@/assets/events/IndiaFOSS.jpeg";
+import CodeAPookalam from "@/assets/events/CodeAP.jpeg";
+import BuildItUp from "@/assets/events/BuildItUp.jpeg";
+import DebUtsav from "@/assets/events/Debutsav.JPG";
+import PravConf from "@/assets/events/Prav.jpeg";
+import LetGitIt from "@/assets/events/GitIt.jpeg";
+import CodeumReparo from "@/assets/events/CR.jpeg";
 
 const Events = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -45,42 +50,49 @@ const Events = () => {
       title: "IndiaFoss 4.0",
       borderColor: "border-yellow-500/60",
       position: getInitialPositions()[0],
+      image: IndiaFoss,
     },
     {
       id: 2,
       title: "Code-A-Pookalam",
       borderColor: "border-blue-500/60",
       position: getInitialPositions()[1],
+      image: CodeAPookalam,
     },
     {
       id: 3,
       title: "Build It Up",
       borderColor: "border-teal-500/60",
       position: getInitialPositions()[2],
+      image: BuildItUp,
     },
     {
       id: 4,
       title: "DebUtsav",
       borderColor: "border-purple-500/60",
       position: getInitialPositions()[3],
+      image: DebUtsav,
     },
     {
       id: 5,
       title: "PravConf",
       borderColor: "border-orange-500/60",
       position: getInitialPositions()[4],
+      image: PravConf,
     },
     {
       id: 6,
       title: "Let's Git It",
       borderColor: "border-yellow-500/60",
       position: getInitialPositions()[5],
+      image: LetGitIt,
     },
     {
       id: 7,
       title: "Codeum Reparo",
       borderColor: "border-blue-500/60",
       position: getInitialPositions()[6],
+      image: CodeumReparo,
     },
   ]);
 
@@ -140,6 +152,7 @@ const Events = () => {
                           borderColor={card.borderColor}
                           position={{ x: 0, y: 0 }}
                           onDragEnd={null}
+                          image={card.image}
                         />
                       </div>
                     </CarouselItem>
@@ -161,6 +174,7 @@ const Events = () => {
                   borderColor={card.borderColor}
                   position={card.position}
                   onDragEnd={handleDragEnd}
+                  image={card.image}
                 />
               ))}
             </div>

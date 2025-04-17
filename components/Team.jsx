@@ -3,94 +3,7 @@ import Image from "next/image";
 import TeamsCard from "./TeamsCard";
 import bg from "@/assets/bg.svg";
 import IMG from "@/assets/Team/placeholder.png";
-import { UncutSans } from "@/app/layout";
-
-const gridData = [
-  {
-    id: 1,
-    value: "Item 1",
-    name: "Nikhil M",
-    position: "Chairperson",
-    img: IMG,
-  },
-  {
-    id: 2,
-    value: "Item 2",
-    name: "Nikhil M",
-    position: "Chairperson",
-    img: IMG,
-  },
-  {
-    id: 3,
-    value: "Item 3",
-    name: "Nikhil M",
-    position: "Chairperson",
-    img: IMG,
-  },
-  {
-    id: 4,
-    value: "Item 4",
-    name: "Nikhil M",
-    position: "Chairperson",
-    img: IMG,
-  },
-  {
-    id: 5,
-    value: "Item 5",
-    name: "Nikhil M",
-    position: "Chairperson",
-    img: IMG,
-  },
-  {
-    id: 6,
-    value: "Item 6",
-    name: "Nikhil M",
-    position: "Chairperson",
-    img: IMG,
-  },
-  {
-    id: 7,
-    value: "Item 7",
-    name: "Nikhil M",
-    position: "Chairperson",
-    img: IMG,
-  },
-  {
-    id: 8,
-    value: "Item 8",
-    name: "Nikhil M",
-    position: "Chairperson",
-    img: IMG,
-  },
-  {
-    id: 9,
-    value: "Item 9",
-    name: "Nikhil M",
-    position: "Chairperson",
-    img: IMG,
-  },
-  {
-    id: 10,
-    value: "Item 10",
-    name: "Nikhil M",
-    position: "Chairperson",
-    img: IMG,
-  },
-  {
-    id: 11,
-    value: "Item 11",
-    name: "Nikhil M",
-    position: "Chairperson",
-    img: IMG,
-  },
-  {
-    id: 12,
-    value: "Item 12",
-    name: "Nikhil M",
-    position: "Chairperson",
-    img: IMG,
-  },
-];
+import { TEAM } from "@/constants";
 
 const Team = () => {
   return (
@@ -113,7 +26,7 @@ const Team = () => {
       </div>
       <div className="xl:h-20 lg:h-16 h-12" />
       <div className="grid lg:grid-cols-6 gap-8 xl:w-[70%] lg:w-[90%] md:w-[80%] md:grid-cols-4 sm:grid-cols-3 grid-cols-2 mb-20 px-4">
-        {gridData.map((item) => (
+        {TEAM.map((item) => (
           <TeamsCard
             key={item.id}
             img={item.img}

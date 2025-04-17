@@ -11,13 +11,12 @@ const Team = () => {
       className="min-h-screen flex flex-col items-center relative justify-center mb-10"
       id="team"
     >
-      <Image src={bg} alt="bg" fill className="object-cover" />
       <div className="w-full relative h-fit flex mt-40 text-center">
         <div className="xl:w-[20%] sm:w-[15%]" />
         <div className="w-full flex  justify-center sm:justify-start">
           <h1
             className={
-              " font-uncut-sans-var font-semibold italic sm:text-start top-0 lg:text-[48px] text-[35px]  leading-[100%] tracking-[-0.04em] align-middle capitalize text-transparent bg-clip-text bg-gradient-to-r from-[#C0AE42] via-[#379CA2] to-[#2C7FDC]"
+              " font-uncut-sans-var font-semibold italic sm:text-start top-0 px-8 sm:px-16 lg:px-32 text-3xl md:text-4xl leading-[100%] tracking-[-0.04em] align-middle capitalize text-transparent bg-clip-text bg-gradient-to-r from-[#C0AE42] via-[#379CA2] to-[#2C7FDC]"
             }
           >
             {"<"}MEET THE TEAM!{">"}

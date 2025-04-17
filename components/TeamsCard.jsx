@@ -11,7 +11,7 @@ function TeamsCard({ img, name, position }) {
           <h2 className="font-uncut-sans font-medium text-[18px] leading-[20px] tracking-[0px] text-center align-middle uppercase text-white/80">
             {name}
           </h2>
-          <h3 className="font-dm-mono font-normal text-[14px] leading-[20px] tracking-[0.3px] text-center align-middle text-white/54">
+          <h3 className="font-dm-mono font-normal text-[11px] leading-[20px] tracking-[0.3px] text-center align-middle text-white/54">
             {position}
           </h3>
         </div>

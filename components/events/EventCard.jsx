@@ -2,6 +2,7 @@
 import React, { useState, useRef } from "react";
 import { MdFlip } from "react-icons/md";
 import { TbGripVertical } from "react-icons/tb";
+import Image from "next/image";
 
 // Custom hook for drag functionality
 const useDraggable = (initialPosition, onPositionChange) => {
@@ -62,7 +63,7 @@ const useDraggable = (initialPosition, onPositionChange) => {
   };
 };
 
-export const EventCard = ({ title, borderColor, id, position, onDragEnd }) => {
+export const EventCard = ({ title, borderColor, id, position, onDragEnd, image }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   
   const handlePositionChange = (newPosition) => {
@@ -135,12 +136,12 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd }) => {
             <div className="w-full h-full flex flex-col justify-between pt-6 px-6 pb-3.5 group items-center transition-all duration-[0.75s] border border-white/10 hover:border-[#ACAB4F]/38 relative before:absolute before:min-h-[10px] before:min-w-[10px] before:transition-all before:duration-[0.75s] before:border-white/10 hover:before:border-[#ACAB4F] after:transition-all after:duration-[0.75s] after:border-white/10 hover:after:border-[#ACAB4F] before:border-t-[3px] before:border-l-[3px] before:top-[-2px] before:left-[-2px] after:absolute after:h-[10px] after:w-[10px] after:border-t-[3px] after:border-r-[3px] after:top-[-2px] after:right-[-2px] backdrop-blur-[1px] bg-[#121f38]">
               <div className="absolute h-full w-full before:absolute before:min-h-[10px] z-20 top-0 before:min-w-[10px] before:transition-all before:duration-[0.75s] before:border-white/10 group-hover:before:border-[#ACAB4F] after:transition-all after:duration-[0.75s] after:border-white/10 group-hover:after:border-[#ACAB4F] before:border-b-[3px] before:border-l-[3px] before:bottom-[-2px] before:left-[-2px] after:absolute after:h-[10px] after:w-[10px] after:border-b-[3px] after:border-r-[3px] after:bottom-[-2px] after:right-[-2px]" />
               <div className="h-[75%] w-full relative">
-                <img
-                  src="/assets/events/eventcard.jpeg"
+                <Image
+                  src={image}
                   alt="Event background"
                   className="w-full h-full object-cover"
                   draggable="false"
-                />
+                />  
               </div>
               <div className="relative w-full flex justify-between items-center mt-4">
                 <h2 className="font-uncut-sans font-medium text-[18px] leading-[20px] tracking-[0px] text-white/80">

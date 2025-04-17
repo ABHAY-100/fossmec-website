@@ -5,10 +5,10 @@ import Image from "next/image";
 const Landing = () => {
   return (
     <div
-      className="min-h-screen w-screen flex flex-col max-sm:pl-7 items-center justify-start max-md:pt-50 md:justify-center relative"
+      className="min-h-screen w-screen flex z-10 flex-col max-sm:pl-7 items-center justify-start max-md:pt-50 md:justify-center relative bg-our-bg"
       id="home"
     >
-      <div className="absolute -top-2 left-0 inset-0 z-[-1] overflow-hidden">
+      <div className="absolute -top-2 left-0 inset-0 z-[0] overflow-hidden">
         <Image
           src={landingBg}
           alt="Background image"

@@ -3,31 +3,46 @@ import React, { useState, useEffect } from "react";
 import { EventCard } from "./EventCard";
 import Image from "next/image";
 import bg from "@/assets/bg.svg";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import useMediaQuery from "@/hooks/use-media-query";
 
 const Events = () => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   const getInitialPositions = () => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       return [
-        { x: 20, y: 50 },
-        { x: 20, y: 400 },
-        { x: 20, y: 750 },
-        { x: 20, y: 1100 },
-        { x: 20, y: 1450 },
+        { x: 20, y: 20 },    // mobile positions
+        { x: 20, y: 370 },   
+        { x: 20, y: 720 },
+        { x: 20, y: 1070 },
+        { x: 20, y: 1420 },
+        { x: 20, y: 1770 },
+        { x: 20, y: 2120 },
       ];
     }
+   
     return [
-      { x: 50, y: 50 },
-      { x: 200, y: 100 },
-      { x: 350, y: 150 },
-      { x: 500, y: 200 },
-      { x: 650, y: 250 },
+      { x: 20, y: 20 },     
+      { x: 140, y: 60 },    
+      { x: 260, y: 100 },    
+      { x: 380, y: 140 },    
+      { x: 500, y: 180 },    
+      { x: 620, y: 220 },    
+      { x: 740, y: 260 },    
     ];
   };
 
   const [cards, setCards] = useState([
     {
       id: 1,
-      title: "Genisis",
+      title: "IndiaFoss 4.0",
       borderColor: "border-yellow-500/60",
       position: getInitialPositions()[0],
     },
@@ -39,7 +54,7 @@ const Events = () => {
     },
     {
       id: 3,
-      title: "Devsprint",
+      title: "Build It Up",
       borderColor: "border-teal-500/60",
       position: getInitialPositions()[2],
     },
@@ -51,9 +66,21 @@ const Events = () => {
     },
     {
       id: 5,
-      title: "Hacktoberfest",
+      title: "PravConf",
       borderColor: "border-orange-500/60",
       position: getInitialPositions()[4],
+    },
+    {
+      id: 6,
+      title: "Let's Git It",
+      borderColor: "border-yellow-500/60",
+      position: getInitialPositions()[5],
+    },
+    {
+      id: 7,
+      title: "Codeum Reparo",
+      borderColor: "border-blue-500/60",
+      position: getInitialPositions()[6],
     },
   ]);
 
@@ -100,17 +127,45 @@ const Events = () => {
           workshops, and collaborative spaces for students and tech enthusiasts.
         </p>
 
-        <div className="relative min-h-[600px] mt-8 md:min-h-[800px] lg:min-h-[600px]">
-          {cards.map((card) => (
-            <EventCard
-              key={card.id}
-              id={card.id}
-              title={card.title}
-              borderColor={card.borderColor}
-              position={card.position}
-              onDragEnd={handleDragEnd}
-            />
-          ))}
+        <div className="relative mt-8">
+          {isMobile ? (
+            <div className="px-2">
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {cards.map((card) => (
+                    <CarouselItem key={card.id} className="w-full">
+                      <div className="p-1 flex items-center justify-center h-[320px]">
+                        <EventCard
+                          id={card.id}
+                          title={card.title}
+                          borderColor={card.borderColor}
+                          position={{ x: 0, y: 0 }}
+                          onDragEnd={null}
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <div className="flex justify-center mt-4">
+                  <CarouselPrevious className="static mx-2 transform-none" />
+                  <CarouselNext className="static mx-2 transform-none" />
+                </div>
+              </Carousel>
+            </div>
+          ) : (
+            <div className="relative min-h-[600px] md:min-h-[800px] lg:min-h-[600px]">
+              {cards.map((card) => (
+                <EventCard
+                  key={card.id}
+                  id={card.id}
+                  title={card.title}
+                  borderColor={card.borderColor}
+                  position={card.position}
+                  onDragEnd={handleDragEnd}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

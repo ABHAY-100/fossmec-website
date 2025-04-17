@@ -18,7 +18,7 @@ const Footer = () => {
       />
 
       {/* Main Section */}
-      <div className="min-h-[calc(100vh-264px)] w-full flex flex-col items-center justify-center text-center py-16 z-10">
+      <div className="min-h-[calc(100vh-290px)] w-full flex flex-col items-center justify-center text-center py-16 z-10">
         <h2
           className="text-2xl md:text-4xl font-semibold italic leading-relaxed max-md:mx-2"
           style={{ wordSpacing: "-0.2rem" }}

@@ -8,7 +8,7 @@ import { TEAM } from "@/constants";
 const Team = () => {
   return (
     <div
-      className="min-h-screen flex flex-col items-center relative justify-center"
+      className="min-h-screen flex flex-col items-center relative justify-center mb-10"
       id="team"
     >
       <Image src={bg} alt="bg" fill className="object-cover" />

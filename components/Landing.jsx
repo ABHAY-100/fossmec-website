@@ -19,7 +19,7 @@ const Landing = () => {
 
       <div className="z-10 max-w-[80%] -ml-13 max-md:text-center w-full px-4 flex flex-col items-start">
         <div className="flex flex-col items-start text-center md:text-left">
-          <h1 className="text-[38px] md:text-5xl lg:text-7xl xl:text-[100px] font-uncut-sans font-extrabold leading-[1]">
+          <h1 className="text-[38px] md:text-5xl lg:text-7xl xl:text-[95px] font-uncut-sans font-extrabold leading-[1]">
             OPEN SOURCE SOFTWARE FOUNDATION
           </h1>
         </div>

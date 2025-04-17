@@ -8,9 +8,8 @@ import { FaLinkedin } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="relative w-full flex flex-col items-center justify-center text-white overflow-hidden">
-
       {/* Main Section */}
-      <div className="min-h-[calc(100vh-13.95rem)] w-full flex flex-col items-center justify-center text-center py-16 z-10">
+      <div className="min-h-[calc(100vh-16.75rem)] md:min-h-[calc(100vh-15.10rem)] w-full flex flex-col items-center justify-center text-center py-16 z-10">
         <h2
           className="text-2xl md:text-4xl font-semibold italic leading-relaxed max-md:mx-2"
           style={{ wordSpacing: "-0.2rem" }}

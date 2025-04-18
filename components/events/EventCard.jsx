@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { MdFlip } from "react-icons/md";
-import { TbGripVertical } from "react-icons/tb";
+import { RxUpdate } from "react-icons/rx";
 import Image from "next/image";
 
 // Custom hook for drag functionality
@@ -15,7 +15,7 @@ const useDraggable = (initialPosition, onPositionChange) => {
     if (!elementRef.current) return;
     setDragOffset({
       x: e.clientX - position.x,
-      y: e.clientY - position.y
+      y: e.clientY - position.y,
     });
     setIsDragging(true);
   };
@@ -25,9 +25,9 @@ const useDraggable = (initialPosition, onPositionChange) => {
 
     const newPosition = {
       x: e.clientX - dragOffset.x,
-      y: e.clientY - dragOffset.y
+      y: e.clientY - dragOffset.y,
     };
-    
+
     setPosition(newPosition);
     if (onPositionChange) {
       onPositionChange(newPosition);
@@ -45,13 +45,13 @@ const useDraggable = (initialPosition, onPositionChange) => {
 
   React.useEffect(() => {
     if (isDragging) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
     }
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
     };
   }, [isDragging, position]);
 
@@ -59,21 +59,32 @@ const useDraggable = (initialPosition, onPositionChange) => {
     elementRef,
     position,
     handleMouseDown,
-    isDragging
+    isDragging,
   };
 };
 
-export const EventCard = ({ title, borderColor, id, position, onDragEnd, image }) => {
+export const EventCard = ({
+  title,
+  borderColor,
+  id,
+  position,
+  onDragEnd,
+  image,
+}) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  
+
   const handlePositionChange = (newPosition) => {
     if (onDragEnd) {
       onDragEnd(id, newPosition);
     }
   };
 
-  const { elementRef, position: currentPosition, handleMouseDown, isDragging } = 
-    useDraggable(position || { x: 0, y: 0 }, handlePositionChange);
+  const {
+    elementRef,
+    position: currentPosition,
+    handleMouseDown,
+    isDragging,
+  } = useDraggable(position || { x: 0, y: 0 }, handlePositionChange);
 
   const getBackContent = (id) => {
     switch (id) {
@@ -96,10 +107,8 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd, image }
     }
   };
 
-
   const isInCarousel = !onDragEnd || position === undefined;
 
-  
   const handleFlipClick = (e) => {
     e.stopPropagation();
     setIsFlipped(!isFlipped);
@@ -111,10 +120,10 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd, image }
       className={`relative ${isInCarousel ? "w-full h-full" : ""}`}
       onMouseDown={!isInCarousel ? handleMouseDown : undefined}
       style={
-        isInCarousel 
-          ? {} 
+        isInCarousel
+          ? {}
           : {
-              position: 'absolute',
+              position: "absolute",
               left: currentPosition.x,
               top: currentPosition.y,
               width: "400px",
@@ -141,15 +150,18 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd, image }
                   alt="Event background"
                   className="w-full h-full object-cover"
                   draggable="false"
-                />  
+                />
               </div>
               <div className="relative w-full flex justify-between items-center mt-4">
                 <h2 className="font-uncut-sans font-medium text-[18px] leading-[20px] tracking-[0px] text-white/80">
                   {title}
                 </h2>
-                {!isInCarousel && (
-                  <div className="cursor-move text-white/80">
-                    <TbGripVertical className="text-xl" />
+                {!isFlipped && (
+                  <div
+                    className="py-2 px-3 rounded-md text-white/80 z-20 cursor-pointer bg-white/[.06]"
+                    onClick={handleFlipClick}
+                  >
+                    <RxUpdate className="text-xl" />
                   </div>
                 )}
               </div>
@@ -165,17 +177,25 @@ export const EventCard = ({ title, borderColor, id, position, onDragEnd, image }
                   {getBackContent(id)}
                 </p>
               </div>
+              {isFlipped && (
+                <div
+                  className="py-2 px-3 rounded-md text-white/80 z-20 cursor-pointer bg-white/[.06] ml-auto"
+                  onClick={handleFlipClick}
+                >
+                  <RxUpdate className="text-xl" />
+                </div>
+              )}
             </div>
           </div>
         </div>
       </div>
-      <button
+      {/* <button
         onClick={handleFlipClick}
         className="absolute bottom-4 right-4 md:bottom-4 md:right-4 sm:bottom-3 sm:right-3 text-white/80 hover:text-white transition-colors z-30 p-2"
         aria-label="Flip card"
       >
         <MdFlip size={isInCarousel ? 20 : 24} />
-      </button>
+      </button> */}
     </div>
   );
 };

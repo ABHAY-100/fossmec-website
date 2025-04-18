@@ -17,17 +17,20 @@ const page = () => {
       </div>
       <div>
         <LenisWrapper>
-          <Landing />
           <div className="relative min-h-screen">
             <div className="fixed inset-0 z-0">
-              <Image src={bg} alt="bg" fill className="object-cover max-h-screen z-[-1]" />
+              <Image
+                src={bg}
+                alt="bg"
+                fill
+                className="object-cover max-h-screen z-[-1]"
+              />
             </div>
-            <div className="relative z-10">
-              <About />
-              <Events />
-              <Team />
-              <Marquee />
-            </div>
+            <Landing />
+            <About />
+            <Events />
+            <Team />
+            <Marquee />
           </div>
         </LenisWrapper>
       </div>

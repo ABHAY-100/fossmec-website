@@ -57,7 +57,7 @@ const Footer = () => {
         max-md:gap-2 justify-between items-center space-y-4 text-sm text-white/55 font-medium h-full px-6 py-6 mt-1"
         >
           <p className="mb-4 md:mb-0 font-mono">
-            🄯 2025 FOSS MEC - GPL v3 License
+            🄯 2025 FOSS MEC | <a target="_blank" href="https://github.com/FossMec/website" className="hover:text-[#FFD022]/[0.7] transition">Open Source Forever</a>
           </p>
           <div className="flex space-x-8 min-lg:pr-1">
             <a

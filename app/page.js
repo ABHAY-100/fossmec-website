@@ -16,7 +16,7 @@ const page = () => {
         <Navbar />
       </div>
       <div>
-        <LenisWrapper>
+    {/* <LenisWrapper> */}
           <div className="relative min-h-screen">
             <div className="fixed inset-0 z-0">
               <Image
@@ -32,7 +32,7 @@ const page = () => {
             <Team />
             <Marquee />
           </div>
-        </LenisWrapper>
+        {/* </LenisWrapper> */}
       </div>
       <Footer />
     </div>

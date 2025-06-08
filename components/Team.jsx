@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import TeamsCard from "./TeamsCard";
 import { TEAM2022, TEAM2023, TEAM2024 } from "@/constants";
-import DrSonyP from "@/assets/Team/DrSonyP.jpeg";
+import DrSonyP from "@/assets/Team/DrSonyP.png";
 
 const Team = () => {
   const [selectedYear, setSelectedYear] = useState("2024");

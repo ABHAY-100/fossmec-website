@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import TeamsCard from "./TeamsCard";
 import { TEAM2022, TEAM2023, TEAM2024 } from "@/constants";
 import DrSonyP from "@/assets/Team/DrSonyP.png";
+import SonyMemoji from "@/assets/Team/memoji/sony_miss.png";
+import NoImage from "@/assets/noimg.png";
 
 const Team = () => {
   const [selectedYear, setSelectedYear] = useState("2024");
@@ -51,7 +53,7 @@ const Team = () => {
       <div className="xl:h-20 lg:h-16 h-12" />
       <div className="grid lg:grid-cols-6 gap-8 xl:w-[70%] lg:w-[90%] md:w-[80%] md:grid-cols-4 sm:grid-cols-4 min-[500px]:grid-cols-3 grid-cols-2 mb-20 px-4">
         <TeamsCard
-          img={DrSonyP}
+          img={selectedYear === "2024" ? SonyMemoji : selectedYear === "2023" ? DrSonyP : NoImage}
           name={"Dr. Sony P"}
           position={"Faculty In-Charge"}
         />

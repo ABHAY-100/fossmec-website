@@ -32,160 +32,183 @@ import VishnuRPotti from "@/assets/Team/VishnuRPotti.png";
 import VasanthR from "@/assets/Team/VasanthR.png";
 import JoelRoshan from "@/assets/Team/JoelRoshan.png";
 
+import AadithyaMadhavMemoji from "@/assets/Team/memoji/Aadithya_Madhav__Executive.png";
+import AdhishJosephShinuMemoji from "@/assets/Team/memoji/Adhish_Joseph_Shinu_Sub-Marketing_Lead.png";
+import AlanBijuMemoji from "@/assets/Team/memoji/Alan_Biju__Open_Hardware_Advocate.png";
+import AnavadyaNLakshmiMemoji from "@/assets/Team/memoji/Anavadya_N_Lakshmi__Design_Sub_Lead.png";
+import ArjunCSMemoji from "@/assets/Team/memoji/Arjun_C_S__Marketing_head.png";
+import ATheerthaMemoji from "@/assets/Team/memoji/A_Theertha__Secretary.png";
+import DeepakPNairMemoji from "@/assets/Team/memoji/Deepak_P_Nair_Content_Sub-Head.png";
+import JaimyRenjiMemoji from "@/assets/Team/memoji/Jaimy_Renji__Design_Lead.png";
+import JeswinJosephMemoji from "@/assets/Team/memoji/Jeswin_Joseph_Treasurer.png";
+import JoelRoshanMemoji from "@/assets/Team/memoji/Joel_Roshan__Web_Lead.png";
+import KarthikGKumarMemoji from "@/assets/Team/memoji/Karthik_G_Kumar__AI_ML_Lead.png";
+import KhushiVedMemoji from "@/assets/Team/memoji/Khushi_Ved__Tech_Lead.png";
+import KVVarunKrishnanMemoji from "@/assets/Team/memoji/KV_Varun_Krishnan_Vice_Chairperson.png";
+import MohammedYasirKNMemoji from "@/assets/Team/memoji/Mohammed_Yasir_K_N__Executive.png";
+import NikeshTVMemoji from "@/assets/Team/memoji/Nikesh_T_V__Events_Lead.png";
+import NikhilMMemoji from "@/assets/Team/memoji/Nikhil_M__Chairperson.png";
+import PranavPSMemoji from "@/assets/Team/memoji/Pranav_P_S__Operations_Lead.png";
+import RoshinJimmyMemoji from "@/assets/Team/memoji/Roshin_Jimmy_Joint_Secretary.png";
+import SherilDominicMemoji from "@/assets/Team/memoji/Sheril_Dominic__Events_sub_head.png";
+import SreepriaKMMemoji from "@/assets/Team/memoji/Sreepria_KM_Executive.png";
+import SrilakshmiRanganathMemoji from "@/assets/Team/memoji/Srilakshmi_R_Content_Head.png";
+import VasanthRMemoji from "@/assets/Team/memoji/Vasanth_R__Executive.png";
+
 export const TEAM2024 = [
   {
     id: 1,
     value: "Item 1",
     name: "Nikhil",
     position: "Chair",
-    img: NikhilM,
+    img: NikhilMMemoji,
   },
   {
     id: 2,
     value: "Item 2",
     name: "Varun",
     position: "Vice Chair",
-    img: KVVarunKrishnan,
+    img: KVVarunKrishnanMemoji,
   },
   {
     id: 3,
     value: "Item 3",
     name: "Theertha",
     position: "Secretary",
-    img: TheerthaAvinash,
+    img: ATheerthaMemoji,
   },
   {
     id: 4,
     value: "Item 4",
     name: "Roshin",
     position: "Joint Secretary",
-    img: RoshinJimmy,
+    img: RoshinJimmyMemoji,
   },
   {
     id: 5,
     value: "Item 5",
     name: "Alan",
     position: "Open Hardware Advocate",
-    img: AlanBiju,
+    img: AlanBijuMemoji,
   },
   {
     id: 6,
     value: "Item 6",
     name: "Khushi",
     position: "Tech Lead",
-    img: KhushiVed,
+    img: KhushiVedMemoji,
   },
   {
     id: 7,
     value: "Item 7",
     name: "Jeswin",
     position: "Treasurer",
-    img: JeswinJ,
+    img: JeswinJosephMemoji,
   },
   {
     id: 8,
     value: "Item 8",
     name: "Pranav",
     position: "Operations Lead",
-    img: PranavPS,
+    img: PranavPSMemoji,
   },
   {
     id: 9,
     value: "Item 9",
     name: "Karthik",
     position: "AI/ML Lead",
-    img: KarthikGKumar,
+    img: KarthikGKumarMemoji,
   },
   {
     id: 10,
     value: "Item 10",
     name: "Nikesh",
     position: "Events Lead",
-    img: NikeshTV,
+    img: NikeshTVMemoji,
   },
   {
     id: 11,
     value: "Item 11",
     name: "Sheril",
     position: "Events Sub-Head",
-    img: SherilDominic,
+    img: SherilDominicMemoji,
   },
   {
     id: 12,
     value: "Item 12",
     name: "Jaimy",
     position: "Design Lead",
-    img: JaimyRenji,
+    img: JaimyRenjiMemoji,
   },
   {
     id: 13,
     value: "Item 13",
     name: "Anavadya",
     position: "Design Sub-Lead",
-    img: AnavadyaNLakshmi,
+    img: AnavadyaNLakshmiMemoji,
   },
   {
     id: 14,
     value: "Item 14",
     name: "Arjun",
     position: "Marketing Head",
-    img: ArjunCS,
+    img: ArjunCSMemoji,
   },
   {
     id: 15,
     value: "Item 15",
     name: "Adhish",
     position: "Sub-Marketing Lead",
-    img: AdhishJosephShinu,
+    img: AdhishJosephShinuMemoji,
   },
   {
     id: 16,
     value: "Item 16",
     name: "Srilakshmi",
     position: "Content Head",
-    img: SrilakshmiRanganath,
+    img: SrilakshmiRanganathMemoji,
   },
   {
     id: 17,
     value: "Item 17",
     name: "Deepak",
     position: "Content Sub-Head",
-    img: DeepakPNair,
+    img: DeepakPNairMemoji,
   },
   {
     id: 18,
     value: "Item 18",
     name: "Joel",
     position: "Web Lead",
-    img: JoelRoshan,
+    img: JoelRoshanMemoji,
   },
   {
     id: 19,
     value: "Item 19",
     name: "Aadithya",
     position: "Executive",
-    img: AadithyaMadhav,
+    img: AadithyaMadhavMemoji,
   },
   {
     id: 20,
     value: "Item 20",
     name: "Yasir",
     position: "Executive",
-    img: MohdYasirKN,
+    img: MohammedYasirKNMemoji,
   },
   {
     id: 21,
     value: "Item 21",
     name: "Sreepria",
     position: "Executive",
-    img: SreepriyaKM,
+    img: SreepriaKMMemoji,
   },
   {
     id: 22,
     value: "Item 22",
     name: "Vasanth",
     position: "Executive",
-    img: VasanthR,
+    img: VasanthRMemoji,
   },
 ];
 

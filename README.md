@@ -2,6 +2,13 @@
 
 Figma File: [https://www.figma.com/design/5l24TvVo9KXBoz29lqERmh/web-design-%F0%9F%8C%90](https://www.figma.com/design/5l24TvVo9KXBoz29lqERmh/web-design-%F0%9F%8C%90?node-id=125-209&p=f)
 
+## Docker
+
+```bash
+docker build -t fossmec-website .
+docker run -p 3000:3000 fossmec-website
+```
+
 ## Running the website
 
 ```bash

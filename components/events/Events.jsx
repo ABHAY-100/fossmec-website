@@ -23,8 +23,8 @@ const Events = () => {
   const getInitialPositions = () => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
       return [
-        { x: 20, y: 20 },    // mobile positions
-        { x: 20, y: 370 },   
+        { x: 20, y: 20 }, // mobile positions
+        { x: 20, y: 370 },
         { x: 20, y: 720 },
         { x: 20, y: 1070 },
         { x: 20, y: 1420 },
@@ -32,22 +32,22 @@ const Events = () => {
         { x: 20, y: 2120 },
       ];
     }
-   
+
     return [
-      { x: 20, y: 20 },     
-      { x: 140, y: 60 },    
-      { x: 260, y: 100 },    
-      { x: 380, y: 140 },    
-      { x: 500, y: 180 },    
-      { x: 620, y: 220 },    
-      { x: 740, y: 260 },    
+      { x: 20, y: 20 },
+      { x: 140, y: 60 },
+      { x: 260, y: 100 },
+      { x: 380, y: 140 },
+      { x: 500, y: 180 },
+      { x: 620, y: 220 },
+      { x: 740, y: 260 },
     ];
   };
 
   const [cards, setCards] = useState([
     {
       id: 1,
-      title: "IndiaFoss 4.0",
+      title: "IndiaFOSS 4.0",
       borderColor: "border-yellow-500/60",
       position: getInitialPositions()[0],
       image: IndiaFoss,
@@ -126,16 +126,18 @@ const Events = () => {
   };
 
   return (
-    <div className="min-h-screen relative px-4 md:px-8 flex flex-col" id="events">
-
+    <div
+      className="min-h-screen relative px-4 md:px-8 flex flex-col"
+      id="events"
+    >
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col h-full py-8">
         <h2 className="text-3xl md:text-4xl font-semibold italic uppercase text-left px-2 sm:px-16 lg:px-28 mt-25 mb-6 font-uncut-sans tracking-tight leading-none bg-gradient-to-r from-[#C0AE42] via-[#379CA2] to-[#2C7FDC] bg-clip-text text-transparent">
-          &lt;What abt events?&gt;
+          &lt;WHAT ABOUT EVENTS?&gt;
         </h2>
 
         <p className="font-dm-mono text-white text-lg md:text-2xl mx-auto mb-8 font-normal tracking-tight leading-[120%] max-w-[1000px] mt-10 px-4 text-left">
-          Our events focus on open source, featuring expert talks, practical
-          workshops, and collaborative spaces for students and tech enthusiasts.
+          Our events focus on FOSS, featuring expert talks, practical workshops,
+          and collaborative spaces for students and tech enthusiasts.
         </p>
 
         <div className="relative mt-8">

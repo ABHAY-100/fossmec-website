@@ -17,14 +17,15 @@ const About = () => {
 
         {/* Paragraph */}
         <p className="text-white lg:text-[25px] sm:text-xl leading-relaxed font-mono">
-          We craft exceptional apparel and accessories, merging cutting-edge
-          design with timeless elegance.
-          <br />
-          <br />
-          We develop and maintain open-source software projects with a focus on
-          empowering both users and developers. Our mission is to create tools
-          that are not only innovative but also free, transparent, and welcoming
-          to all.
+          FOSSMEC is the Free and Open Source Software Cell of Government Model
+          Engineering College. The cell was formed to organize the college’s
+          technical initiatives under a single, structured platform and to
+          actively promote open source culture. It brings together students
+          passionate about technology to work on projects, contribute to global
+          open source communities, and explore real-world tools and workflows.
+          Through workshops, hands-on sessions, and events, we encourage
+          learning, collaboration, and contribution to the broader FOSS
+          ecosystem both within the college and beyond.
         </p>
       </div>
     </div>

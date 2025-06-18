@@ -20,12 +20,13 @@ const About = () => {
           FOSSMEC is the Free and Open Source Software Cell of Government Model
           Engineering College. The cell was formed to organize the college’s
           technical initiatives under a single, structured platform and to
-          actively promote open source culture. It brings together students
+          actively promote free open source culture. It brings together students
           passionate about technology to work on projects, contribute to global
-          open source communities, and explore real-world tools and workflows.
+          free open source communities, and explore real-world tools and
+          workflows.
           Through workshops, hands-on sessions, and events, we encourage
-          learning, collaboration, and contribution to the broader FOSS
-          ecosystem both within the college and beyond.
+          learning, collaboration, and contribution to the broader free open
+          source ecosystem both within the college and beyond.
         </p>
       </div>
     </div>

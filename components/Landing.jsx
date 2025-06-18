@@ -26,8 +26,8 @@ const Landing = () => {
 
         <p className="text-sm max-sm:leading-[1.5] md:text-sm lg:text-md xl:text-[18px] font-dm-mono italic mt-5 leading-[32px] max-w-full md:max-w-4/5 uppercase text-[#DAE2E9E0] opacity-88">
           FOSS CELL OF GOVERNMENT MODEL ENGINEERING COLLEGE IS A STUDENT-LED
-          COMMUNITY, PROMOTING FREE AND OPEN SOURCE SOFTWARE AND FOSTERING AN
-          OPEN SOURCE CULTURE AMONG OUR STUDENTS
+          COMMUNITY, PROMOTING FREE AND OPEN SOURCE SOFTWARE AND FOSTERING A
+          FREE OPEN SOURCE CULTURE AMONG OUR STUDENTS
         </p>
       </div>
     </div>

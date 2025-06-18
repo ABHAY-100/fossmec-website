@@ -100,7 +100,7 @@ const Footer = () => {
                 href="https://github.com/FossMec/website"
                 className="hover:text-[#FFD022]/[0.7] transition"
               >
-                Open Source Forever
+                Free Open Source Forever
               </a>
             </p>
             <p>

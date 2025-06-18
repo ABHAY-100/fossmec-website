@@ -31,7 +31,7 @@ const Footer = () => {
       icon: FaGithub,
     },
     {
-      href: "https://x.com/FossMecc",
+      href: "https://x.com/FossMec",
       text: "X",
       icon: FaXTwitter,
     },

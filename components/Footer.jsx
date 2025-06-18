@@ -4,8 +4,44 @@ import bg from "@/assets/bg.svg";
 import { FaTelegramPlane } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaLinkedin } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaMastodon } from "react-icons/fa";
 
 const Footer = () => {
+  const socialLinks = [
+    {
+      href: "https://instagram.com/foss_mec",
+      text: "Instagram",
+      icon: AiFillInstagram,
+    },
+    {
+      href: "https://t.me/joinchat/_wHtSpuMBQxhODhl",
+      text: "Telegram",
+      icon: FaTelegramPlane,
+    },
+    {
+      href: "https://linkedin.com/company/fossmec",
+      text: "LinkedIn",
+      icon: FaLinkedin,
+    },
+    {
+      href: "https://github.com/FOSSMEC",
+      text: "GitHub",
+      icon: FaGithub,
+    },
+    {
+      href: "https://x.com/FossMecc",
+      text: "X",
+      icon: FaXTwitter,
+    },
+    {
+      href: "https://mastodon.social/@FOSS_MEC",
+      text: "Mastodon",
+      icon: FaMastodon,
+    },
+  ];
+
   return (
     <footer className="relative w-full flex flex-col items-center justify-center text-white overflow-hidden">
       {/* Main Section */}
@@ -56,34 +92,43 @@ const Footer = () => {
           className="relative z-20 font-dmMono max-w-[1500px] mx-auto flex flex-row max-md:flex-col
         max-md:gap-2 justify-between items-center space-y-4 text-sm text-white/55 font-medium h-full px-6 py-6 mt-1"
         >
-          <p className="mb-4 md:mb-0 font-mono">
-            🄯 2025 FOSS MEC | <a target="_blank" href="https://github.com/FossMec/website" className="hover:text-[#FFD022]/[0.7] transition">Open Source Forever</a>
-          </p>
+          <div className="flex flex-col mb-4 md:mb-0 font-mono gap-2">
+            <p>
+              🄯 2025 FOSS MEC |{" "}
+              <a
+                target="_blank"
+                href="https://github.com/FossMec/website"
+                className="hover:text-[#FFD022]/[0.7] transition"
+              >
+                Open Source Forever
+              </a>
+            </p>
+            <p>
+              Contact Us:{" "}
+              <a
+                href="mailto:foss@mec.ac.in"
+                className="hover:text-[#FFD022]/[0.7] transition"
+              >
+                foss@mec.ac.in
+              </a>
+            </p>
+          </div>
+
           <div className="flex space-x-8 min-lg:pr-1">
-            <a
-              href="https://instagram.com/foss_mec"
-              target="_blank"
-              className="hover:text-white transition"
-            >
-              <span className="flex max-lg:hidden">Instagram</span>
-              <AiFillInstagram className="h-5 w-5 max-lg:flex hidden" />
-            </a>
-            <a
-              href="https://t.me/joinchat/_wHtSpuMBQxhODhl"
-              target="_blank"
-              className="hover:text-white transition"
-            >
-              <span className="flex max-lg:hidden">Telegram</span>
-              <FaTelegramPlane className="h-5 w-5 max-lg:flex hidden" />
-            </a>
-            <a
-              href="https://linkedin.com/company/fossmec"
-              target="_blank"
-              className="hover:text-white transition"
-            >
-              <span className="flex max-lg:hidden">LinkedIn</span>
-              <FaLinkedin className="h-5 w-5 max-lg:flex hidden" />
-            </a>
+            {socialLinks.map((social, index) => {
+              const IconComponent = social.icon;
+              return (
+                <a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  className="hover:text-white transition"
+                >
+                  <span className="flex max-lg:hidden">{social.text}</span>
+                  <IconComponent className="h-5 w-5 max-lg:flex hidden" />
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>

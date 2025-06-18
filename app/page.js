@@ -11,7 +11,7 @@ import Image from "next/image";
 
 const page = () => {
   return (
-    <div className="flex flex-col font-dm-mono">
+    <div className="flex flex-col font-dm-mono overflow-x-hidden">
       <div className="fixed top-0 left-0 right-0 z-50">
         <Navbar />
       </div>

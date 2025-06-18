@@ -54,8 +54,16 @@ import SherilDominicMemoji from "@/assets/Team/memoji/Sheril_Dominic__Events_sub
 import SreepriaKMMemoji from "@/assets/Team/memoji/Sreepria_KM_Executive.png";
 import SrilakshmiRanganathMemoji from "@/assets/Team/memoji/Srilakshmi_R_Content_Head.png";
 import VasanthRMemoji from "@/assets/Team/memoji/Vasanth_R__Executive.png";
+import SonyMemoji from "@/assets/Team/memoji/sony_miss.png";
 
 export const TEAM2024 = [
+  {
+    id: 0,
+    value: "Item 0",
+    name: "Sony P",
+    position: "Staff In-Charge",
+    img: SonyMemoji,
+  },
   {
     id: 1,
     value: "Item 1",
@@ -214,6 +222,12 @@ export const TEAM2024 = [
 
 export const TEAM2023 = [
   {
+    id: 0,
+    value: "Item 0",
+    name: "Sony P",
+    position: "Staff In-Charge",
+  },
+  {
     id: 1,
     value: "Item 1",
     name: "Jithin",
@@ -336,6 +350,7 @@ export const TEAM2023 = [
 ];
 
 export const TEAM2022 = [
+  { id: 0, value: "Item 0", name: "Sony P", position: "Staff In-Charge" },
   {
     id: 1,
     value: "Item 1",
@@ -420,4 +435,41 @@ export const TEAM2022 = [
     name: "Subramani",
     position: "Executive",
   },
+];
+
+export const TEAM2021 = [
+  { id: 1, value: "Item 1", name: "Sony P", position: "Staff In-Charge" },
+  { id: 2, value: "Item 2", name: "Mohita Bipin", position: "Chairperson" },
+  { id: 3, value: "Item 3", name: "Malavika R Vikraman", position: "General Manager" },
+  { id: 4, value: "Item 4", name: "Prithvi Chandra", position: "Inclusivity Lead" },
+  { id: 5, value: "Item 5", name: "Pranav Shridhar", position: "Tech Lead" },
+  { id: 6, value: "Item 6", name: "Varun Krishna S", position: "Advocacy Lead" },
+  { id: 7, value: "Item 7", name: "Emmanuel Antony", position: "Community Lead" },
+  { id: 8, value: "Item 8", name: "Aneetta Mary Sajan", position: "Joint Secretary" },
+  { id: 9, value: "Item 9", name: "T Megha", position: "Joint Secretary" },
+  { id: 10, value: "Item 10", name: "Alfred Pius", position: "Outreach Lead" },
+  { id: 11, value: "Item 11", name: "Jessica Jolly", position: "Design Lead" },
+  { id: 12, value: "Item 12", name: "Sreejaya V S", position: "Content Lead" },
+  { id: 13, value: "Item 13", name: "Durga Santhosh", position: "Second Year Representative" },
+  { id: 14, value: "Item 14", name: "Mayon Francis", position: "Second Year Representative" },
+  { id: 15, value: "Item 15", name: "Hanna Salam", position: "Second Year Representative" },
+  { id: 16, value: "Item 16", name: "Adam Oommen Jacob", position: "Second Year Representative" }
+];
+
+
+export const TEAM2020 = [
+  { id: 1, value: "Item 1", name: "Sharat P Raju", position: "Staff In-charge" },
+  { id: 2, value: "Item 2", name: "Aswin G", position: "Chairperson" },
+  { id: 3, value: "Item 3", name: "Priyanga P", position: "Vice Chair" },
+  { id: 4, value: "Item 4", name: "Aswin M", position: "General Secretary" },
+  { id: 5, value: "Item 5", name: "Sneha Saj", position: "Initiatives Head" },
+  { id: 6, value: "Item 6", name: "Arun H", position: "Treasurer" },
+  { id: 7, value: "Item 7", name: "Varun Krishna S", position: "Joint Secretary" },
+  { id: 8, value: "Item 8", name: "Lakshmi Sunil", position: "Joint Secretary" },
+  { id: 9, value: "Item 9", name: "Emmanuel Antony", position: "Second Year Core" },
+  { id: 10, value: "Item 10", name: "Ameen Azeez", position: "Second Year Core" },
+  { id: 11, value: "Item 11", name: "Pranav Shridhar", position: "Second Year Core" },
+  { id: 12, value: "Item 12", name: "Nikita Menon", position: "First Year Core" },
+  { id: 13, value: "Item 13", name: "Aditiya Anilkumar", position: "First Year Core" },
+  { id: 14, value: "Item 14", name: "Zailesh A R", position: "First Year Core" }
 ];

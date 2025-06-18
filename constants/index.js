@@ -60,7 +60,7 @@ export const TEAM2024 = [
   {
     id: 0,
     value: "Item 0",
-    name: "Sony P",
+    name: "Dr. Sony P",
     position: "Staff In-Charge",
     img: SonyMemoji,
   },
@@ -138,7 +138,7 @@ export const TEAM2024 = [
     id: 11,
     value: "Item 11",
     name: "Sheril",
-    position: "Events Sub-Head",
+    position: "Events Sub-Lead",
     img: SherilDominicMemoji,
   },
   {
@@ -159,28 +159,28 @@ export const TEAM2024 = [
     id: 14,
     value: "Item 14",
     name: "Arjun",
-    position: "Marketing Head",
+    position: "Marketing Lead",
     img: ArjunCSMemoji,
   },
   {
     id: 15,
     value: "Item 15",
     name: "Adhish",
-    position: "Sub-Marketing Lead",
+    position: "Marketing Sub-Lead",
     img: AdhishJosephShinuMemoji,
   },
   {
     id: 16,
     value: "Item 16",
     name: "Srilakshmi",
-    position: "Content Head",
+    position: "Content Lead",
     img: SrilakshmiRanganathMemoji,
   },
   {
     id: 17,
     value: "Item 17",
     name: "Deepak",
-    position: "Content Sub-Head",
+    position: "Content Sub-Lead",
     img: DeepakPNairMemoji,
   },
   {
@@ -224,7 +224,7 @@ export const TEAM2023 = [
   {
     id: 0,
     value: "Item 0",
-    name: "Sony P",
+    name: "Dr. Sony P",
     position: "Staff In-Charge",
   },
   {
@@ -350,7 +350,7 @@ export const TEAM2023 = [
 ];
 
 export const TEAM2022 = [
-  { id: 0, value: "Item 0", name: "Sony P", position: "Staff In-Charge" },
+  { id: 0, value: "Item 0", name: "Dr. Sony P", position: "Staff In-Charge" },
   {
     id: 1,
     value: "Item 1",
@@ -415,30 +415,30 @@ export const TEAM2022 = [
     id: 11,
     value: "Item 11",
     name: "Parvathy",
-    position: "Executive",
+    position: "Second Year Representative",
   },
   {
     id: 12,
     value: "Item 12",
     name: "Karthik",
-    position: "Executive",
+    position: "Second Year Representative",
   },
   {
     id: 13,
     value: "Item 13",
     name: "Sreearvathy",
-    position: "Executive",
+    position: "Second Year Representative",
   },
   {
     id: 14,
     value: "Item 14",
     name: "Subramani",
-    position: "Executive",
+    position: "Second Year Representative",
   },
 ];
 
 export const TEAM2021 = [
-  { id: 1, value: "Item 1", name: "Sony P", position: "Staff In-Charge" },
+  { id: 1, value: "Item 1", name: "Dr. Sony P", position: "Staff In-Charge" },
   { id: 2, value: "Item 2", name: "Mohita Bipin", position: "Chairperson" },
   { id: 3, value: "Item 3", name: "Malavika R Vikraman", position: "General Manager" },
   { id: 4, value: "Item 4", name: "Prithvi Chandra", position: "Inclusivity Lead" },

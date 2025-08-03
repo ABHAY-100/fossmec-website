@@ -8,24 +8,45 @@ import Image from "next/image";
 const useDraggable = (initialPosition, onPositionChange) => {
   const [position, setPosition] = useState(initialPosition);
   const [isDragging, setIsDragging] = useState(false);
+  const [hasMoved, setHasMoved] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
   const elementRef = useRef(null);
 
   const handleMouseDown = (e) => {
     if (!elementRef.current) return;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const startPos = { x: clientX, y: clientY };
+    setStartPosition(startPos);
     setDragOffset({
-      x: e.clientX - position.x,
-      y: e.clientY - position.y,
+      x: clientX - position.x,
+      y: clientY - position.y,
     });
     setIsDragging(true);
+    setHasMoved(false);
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging) return;
 
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+    // Check if the mouse has moved significantly to determine if it's a drag
+    const moveDistance = Math.sqrt(
+      Math.pow(clientX - startPosition.x, 2) +
+        Math.pow(clientY - startPosition.y, 2)
+    );
+
+    // If moved more than 5 pixels, consider it a drag
+    if (moveDistance > 5) {
+      setHasMoved(true);
+    }
+
     const newPosition = {
-      x: e.clientX - dragOffset.x,
-      y: e.clientY - dragOffset.y,
+      x: clientX - dragOffset.x,
+      y: clientY - dragOffset.y,
     };
 
     setPosition(newPosition);
@@ -47,19 +68,24 @@ const useDraggable = (initialPosition, onPositionChange) => {
     if (isDragging) {
       window.addEventListener("mousemove", handleMouseMove);
       window.addEventListener("mouseup", handleMouseUp);
+      window.addEventListener("touchmove", handleMouseMove);
+      window.addEventListener("touchend", handleMouseUp);
     }
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("touchmove", handleMouseMove);
+      window.removeEventListener("touchend", handleMouseUp);
     };
-  }, [isDragging, position]);
+  }, [isDragging, position, startPosition]);
 
   return {
     elementRef,
     position,
     handleMouseDown,
     isDragging,
+    hasMoved,
   };
 };
 
@@ -70,6 +96,7 @@ export const EventCard = ({
   position,
   onDragEnd,
   image,
+  onCardClick,
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -84,6 +111,7 @@ export const EventCard = ({
     position: currentPosition,
     handleMouseDown,
     isDragging,
+    hasMoved,
   } = useDraggable(position || { x: 0, y: 0 }, handlePositionChange);
 
   const getBackContent = (id) => {
@@ -114,11 +142,25 @@ export const EventCard = ({
     setIsFlipped(!isFlipped);
   };
 
+  const handleCardClick = (e) => {
+    // Only open modal if it's not in carousel mode, we have a click handler, and the user didn't drag
+    if (!isInCarousel && onCardClick && !hasMoved) {
+      onCardClick();
+    } else if (isInCarousel && onCardClick) {
+      // For carousel mode (mobile), always open modal on click
+      onCardClick();
+    }
+  };
+
   return (
     <div
       ref={elementRef}
-      className={`relative ${isInCarousel ? "w-full h-full" : ""}`}
+      className={`relative ${
+        isInCarousel ? "w-full h-full cursor-pointer" : ""
+      }`}
       onMouseDown={!isInCarousel ? handleMouseDown : undefined}
+      onTouchStart={!isInCarousel ? handleMouseDown : undefined}
+      onClick={handleCardClick}
       style={
         isInCarousel
           ? {}
@@ -130,7 +172,13 @@ export const EventCard = ({
               height: "320px",
               opacity: isDragging ? 0.8 : 1,
               zIndex: isDragging ? 1000 : 1,
-              cursor: isDragging ? "grabbing" : "grab",
+              cursor: isDragging
+                ? "grabbing"
+                : hasMoved
+                ? "grab"
+                : onCardClick
+                ? "pointer"
+                : "grab",
             }
       }
     >

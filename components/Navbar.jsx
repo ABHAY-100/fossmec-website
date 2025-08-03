@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import logo from "../assets/logo.svg";
 import Image from "next/image";
 
-const Navbar = () => {
+const Navbar = ({ selectedEvent }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -96,8 +96,17 @@ const Navbar = () => {
           <a
             href="#events"
             className="text-[14px] hover:text-white/80 transition-colors"
+            onClick={() => {
+              if (selectedEvent) {
+                document
+                  .getElementById("event-details")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
           >
-            EVENTS
+            {selectedEvent
+              ? `EVENTS / ${selectedEvent.title.toUpperCase()}`
+              : "EVENTS"}
           </a>
           <a
             href="#team"
@@ -141,8 +150,18 @@ const Navbar = () => {
         <a
           href="#events"
           className="text-[14px] hover:text-white/80 transition-colors"
+          onClick={() => {
+            setMobileMenuOpen(false);
+            if (selectedEvent) {
+              document
+                .getElementById("event-details")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
         >
-          EVENTS
+          {selectedEvent
+            ? `EVENTS / ${selectedEvent.title.toUpperCase()}`
+            : "EVENTS"}
         </a>
         <a
           href="#team"

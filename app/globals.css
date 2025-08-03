@@ -45,6 +45,7 @@
   --radius-xl: calc(var(--radius) + 4px);
   --font-dm-mono: var(--font-dmMono);
   --font-martian-mono: var(--font-martianMono);
+  --font-reddit-mono: var(--font-redditMono);
   --font-uncut-sans-var: var(--font-uncutSans);
   --font-uncut-sans: var(--font-uncutSans);
 }
@@ -155,4 +156,17 @@ html {
 
 .rotate-y-0 {
   transform: rotateY(0deg);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
 }

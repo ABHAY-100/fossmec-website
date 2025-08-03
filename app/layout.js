@@ -33,6 +33,10 @@ const martianMono = localFont({
   variable: '--font-martianMono',
 });
 
+const redditMono = localFont({
+  src: "../assets/fonts/RedditMono-VariableFont_wght.ttf",
+  variable: "--font-redditMono",
+});
 
 const gamja = Gamja_Flower({
   weight: "400",

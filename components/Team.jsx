@@ -1,14 +1,15 @@
 "use client";
 import React, { useState } from "react";
 import TeamsCard from "./TeamsCard";
-import { TEAM2022, TEAM2023, TEAM2024, TEAM2021, TEAM2020 } from "@/constants";
+import { TEAM2022, TEAM2023, TEAM2024, TEAM2021, TEAM2020 ,TEAM2025 } from "@/constants";
 import DrSonyP from "@/assets/Team/DrSonyP.png";
 import NoImage from "@/assets/noimg.png";
 
 const Team = () => {
-  const [selectedYear, setSelectedYear] = useState("2024");
+  const [selectedYear, setSelectedYear] = useState("2025");
 
   const teamsByYear = {
+    "2025": TEAM2025,
     "2024": TEAM2024,
     "2023": TEAM2023,
     "2022": TEAM2022,
@@ -52,14 +53,20 @@ const Team = () => {
         </div>
       </div>
       <div className="xl:h-20 lg:h-16 h-12" />
-      <div className="grid lg:grid-cols-6 gap-8 xl:w-[70%] lg:w-[90%] md:w-[80%] md:grid-cols-4 sm:grid-cols-4 min-[500px]:grid-cols-3 grid-cols-2 mb-20 px-4">
-        {teamsByYear[selectedYear].map((item) => (
+      <div className="grid lg:grid-cols-6 gap-8 xl:w-[70%] lg:w-[90%] md:w-[80%] md:grid-cols-4 sm:grid-cols-4 min-[500px]:grid-cols-3 grid-cols-2 mb-20 px-4 justify-items-center">
+        
+        
+       {teamsByYear[selectedYear].map((item) => (
+          
           <TeamsCard
             key={item.id}
             img={item?.img}
             name={item.name}
             position={item.position}
+            linkedin={item.linkedin}
+            github={item.github}
           />
+        
         ))}
       </div>
     </div>

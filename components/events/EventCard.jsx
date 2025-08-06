@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { MdFlip } from "react-icons/md";
 import { RxUpdate } from "react-icons/rx";
 import Image from "next/image";
@@ -99,6 +100,7 @@ export const EventCard = ({
   onCardClick,
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const router = useRouter();
 
   const handlePositionChange = (newPosition) => {
     if (onDragEnd) {
@@ -143,12 +145,12 @@ export const EventCard = ({
   };
 
   const handleCardClick = (e) => {
-    // Only open modal if it's not in carousel mode, we have a click handler, and the user didn't drag
-    if (!isInCarousel && onCardClick && !hasMoved) {
-      onCardClick();
-    } else if (isInCarousel && onCardClick) {
-      // For carousel mode (mobile), always open modal on click
-      onCardClick();
+    // Only navigate if the user didn't drag
+    if (!isInCarousel && !hasMoved) {
+      router.push(`/events/${id}`);
+    } else if (isInCarousel) {
+      // For carousel mode (mobile), always navigate on click
+      router.push(`/events/${id}`);
     }
   };
 

@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import logo from "../assets/logo.svg";
 import Image from "next/image";
 
-const Navbar = ({ selectedEvent }) => {
+const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -36,7 +37,7 @@ const Navbar = ({ selectedEvent }) => {
         }`}
     >
       <div className="flex items-center justify-between w-full">
-        <a href="#home">
+        <a href={isEventPage ? "/" : "#home"}>
           <Image src={logo} alt="FOSSMEC Logo" className="h-[85px] w-[85px]" />
         </a>
 
@@ -82,25 +83,24 @@ const Navbar = ({ selectedEvent }) => {
 
         <div className="hidden md:flex items-center gap-10 font-martian-mono">
           <a
-            href="#home"
+            href={isEventPage ? "/" : "#home"}
             className="text-[14px] hover:text-white/80 transition-colors"
           >
             HOME
           </a>
           <a
-            href="#about"
+            href={isEventPage ? "/" : "#about"}
             className="text-[14px] hover:text-white/80 transition-colors"
           >
             ABOUT
           </a>
           <a
-            href="#events"
+            href={isEventPage ? "/" : "#events"}
             className="text-[14px] hover:text-white/80 transition-colors"
-            onClick={() => {
-              if (selectedEvent) {
-                document
-                  .getElementById("event-details")
-                  ?.scrollIntoView({ behavior: "smooth" });
+            onClick={(e) => {
+              if (isEventPage && onEventTitleClick) {
+                e.preventDefault();
+                onEventTitleClick();
               }
             }}
           >
@@ -109,7 +109,7 @@ const Navbar = ({ selectedEvent }) => {
               : "EVENTS"}
           </a>
           <a
-            href="#team"
+            href={isEventPage ? "/" : "#team"}
             className="text-[14px] hover:text-white/80 transition-colors mr-7"
           >
             TEAM
@@ -136,26 +136,27 @@ const Navbar = ({ selectedEvent }) => {
         } flex flex-col items-center gap-5 font-martian-mono`}
       >
         <a
-          href="#home"
+          href={isEventPage ? "/" : "#home"}
           className="text-[14px] hover:text-white/80 transition-colors"
+          onClick={() => setMobileMenuOpen(false)}
         >
           HOME
         </a>
         <a
-          href="#about"
+          href={isEventPage ? "/" : "#about"}
           className="text-[14px] hover:text-white/80 transition-colors"
+          onClick={() => setMobileMenuOpen(false)}
         >
           ABOUT
         </a>
         <a
-          href="#events"
+          href={isEventPage ? "/" : "#events"}
           className="text-[14px] hover:text-white/80 transition-colors"
-          onClick={() => {
+          onClick={(e) => {
             setMobileMenuOpen(false);
-            if (selectedEvent) {
-              document
-                .getElementById("event-details")
-                ?.scrollIntoView({ behavior: "smooth" });
+            if (isEventPage && onEventTitleClick) {
+              e.preventDefault();
+              onEventTitleClick();
             }
           }}
         >
@@ -164,8 +165,9 @@ const Navbar = ({ selectedEvent }) => {
             : "EVENTS"}
         </a>
         <a
-          href="#team"
+          href={isEventPage ? "/" : "#team"}
           className="text-[14px] hover:text-white/80 transition-colors"
+          onClick={() => setMobileMenuOpen(false)}
         >
           TEAM
         </a>

@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { EventCard } from "./EventCard";
-import EventModal from "./EventModal";
 import {
   Carousel,
   CarouselContent,
@@ -18,7 +17,7 @@ import PravConf from "@/assets/events/Prav.jpeg";
 import LetGitIt from "@/assets/events/GitIt.jpeg";
 import CodeumReparo from "@/assets/events/CR.jpeg";
 
-const Events = ({ onEventClick, selectedEvent, onCloseEvent }) => {
+const Events = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const getInitialPositions = () => {
@@ -156,7 +155,6 @@ const Events = ({ onEventClick, selectedEvent, onCloseEvent }) => {
                           position={{ x: 0, y: 0 }}
                           onDragEnd={null}
                           image={card.image}
-                          onCardClick={() => onEventClick && onEventClick(card)}
                         />
                       </div>
                     </CarouselItem>
@@ -179,23 +177,11 @@ const Events = ({ onEventClick, selectedEvent, onCloseEvent }) => {
                   position={card.position}
                   onDragEnd={handleDragEnd}
                   image={card.image}
-                  onCardClick={() => onEventClick && onEventClick(card)}
                 />
               ))}
             </div>
           )}
         </div>
-
-        {/* Event Details Section */}
-        {selectedEvent && (
-          <div id="event-details" className="mt-12">
-            <EventModal
-              isOpen={true}
-              onClose={onCloseEvent}
-              event={selectedEvent}
-            />
-          </div>
-        )}
       </div>
     </div>
   );

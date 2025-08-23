@@ -53,7 +53,7 @@ const Team = () => {
         </div>
       </div>
       <div className="xl:h-20 lg:h-16 h-12" />
-      <div className="grid lg:grid-cols-6 gap-8 xl:w-[70%] lg:w-[90%] md:w-[80%] md:grid-cols-4 sm:grid-cols-4 min-[500px]:grid-cols-3 grid-cols-2 mb-20 px-4 justify-items-center">
+      <div className="grid lg:grid-cols-6 gap-8 lg:w-[90%] md:w-[80%] md:grid-cols-4 sm:grid-cols-4 min-[500px]:grid-cols-3 grid-cols-2 mb-20 px-4 justify-items-center">
         
         
        {teamsByYear[selectedYear].map((item) => (

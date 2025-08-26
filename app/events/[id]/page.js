@@ -1,105 +1,81 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import bg from "@/assets/bg.svg";
-import IndiaFoss from "@/assets/events/IndiaFOSS.jpeg";
-import CodeAPookalam from "@/assets/events/CodeAP.jpeg";
-import BuildItUp from "@/assets/events/BuildItUp.jpeg";
-import DebUtsav from "@/assets/events/Debutsav.JPG";
-import PravConf from "@/assets/events/Prav.jpeg";
-import LetGitIt from "@/assets/events/GitIt.jpeg";
-import CodeumReparo from "@/assets/events/CR.jpeg";
+import { bucketBase, supabase } from "@/lib/supabase";
 
 const EventDetailsPage = () => {
   const params = useParams();
   const router = useRouter();
   const eventId = parseInt(params.id);
+  
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Event data mapping
-  const eventData = {
-    1: {
-      id: 1,
-      title: "IndiaFOSS 4.0",
-      image: IndiaFoss,
-    },
-    2: {
-      id: 2,
-      title: "Code A Pookalam",
-      image: CodeAPookalam,
-    },
-    3: {
-      id: 3,
-      title: "Build It Up",
-      image: BuildItUp,
-    },
-    4: {
-      id: 4,
-      title: "DebUtsav 2024",
-      image: DebUtsav,
-    },
-    5: {
-      id: 5,
-      title: "PravConf",
-      image: PravConf,
-    },
-    6: {
-      id: 6,
-      title: "Let's Git It",
-      image: LetGitIt,
-    },
-    7: {
-      id: 7,
-      title: "Codeum Reparo",
-      image: CodeumReparo,
-    },
-  };
-
-  const event = eventData[eventId];
-
-  const getEventDescription = (id) => {
-    switch (id) {
-      case 2:
-        return "Code a Pookalam'24 was a collaborative event by FOSSMEC and TinkerHub MEC, focused on blending programming skills with Onam's creative spirit. Open to all colleges with a 6K prize pool, the event ran from September 16-21, 2024.";
-      case 4:
-        return "DebUtsav 2024 adopted an unconference format, moving away from traditional talks and workshops. The event featured two tracks: a workshop on 'Packaging in Debian: Footpaths to Being a Debian Maintainer' and hands-on contribution sprints, where groups of five collaborated with experienced Debian contributors to make direct contributions to the Debian project.";
-      case 1:
-        return "Representatives from FOSSMEC actively participated in IndiaFOSS 4.0, a prestigious Free and Open Source Software (FOSS) conference held in Bangalore on September 7th and 8th, 2024. The event provided an excellent platform for FOSSMEC to showcase its initiatives and engage with the broader FOSS community.";
-      case 5:
-        return "FOSSMEC hosted PravApp's genesis conference at Govt. Model Engineering College on 1st and 2nd March, where speaker sessions and small contribution sprints were conducted, sessions mostly focused on privacy-focused messaging, the Fediverse, and the origins of Prav. In short PravConf was a gathering of users, developers and volunteers in the Prav cooperative aiming to free users from vendor lock-in and invasion of privacy.";
-      case 3:
-        return "FOSSMEC hosted Build It Up on August 21–22 at CCF Hall, attracting 75 participants. Led by Joel K George (intern at ragas.io), the session guided attendees through building a full-stack web app using Next.js and Supabase. Designed for all skill levels, it offered hands-on learning in JavaScript and SQL with a focus of simplicity and engagement.";
-      case 6:
-        return "FOSSMEC conducted Let's Git It on February 5–6 at CCF Hall with 75 participants. Led by Lisa V Cherian (GitHub Campus Expert) and Karthik G Kumar (FOSSMEC Secretary), the session simplified Git and GitHub for all skill levels. Attendees explored version control through hands-on learning, including Git setup and GitHub account creation, gaining essential skills for collaborative coding.";
-      case 7:
-        return "Codeum Reparo is a two-round coding competition that challenges participants to debug and optimize web-based solutions, conducted in collaboration with Excel 2024.";
-      default:
-        return "Hello FOSSMEC!";
+  // Function to get 6 images for the gallery
+  const getGalleryImages = () => {
+    if (!event || !event.images) {
+      // If no images, return 6 copies of the default image
+      return Array(6).fill("/assets/events/CR.jpeg");
     }
+    
+    // If images is an array, use it
+    if (Array.isArray(event.images)) {
+      const images = [...event.images];
+      let i = 0;
+      while (images.length < 6) {
+        images.push(images[i] || "/assets/events/CR.jpeg");
+        i++;
+      }
+      return images.slice(0, 6);
+    }
+    
+    // If images is a single string, duplicate it 6 times
+    if (typeof event.images === 'string') {
+      return Array(6).fill(event.images);
+    }
+    
+    // Fallback to default image
+    return Array(6).fill("/assets/events/CR.jpeg");
   };
 
-  const getEventOneline = (id) => {
-    switch (id) {
-      case 2:
-        return "A collaborative coding event blending creativity with technology";
-      case 4:
-        return "An unconference format for Debian packaging and contributions";
-      case 1:
-        return "India's premier Free and Open Source Software conference";
-      case 5:
-        return "Privacy-focused messaging and Fediverse development conference";
-      case 3:
-        return "Full-stack web development workshop with Next.js and Supabase";
-      case 6:
-        return "Git and GitHub workshop for collaborative coding";
-      case 7:
-        return "Debugging and optimization coding competition";
-      default:
-        return "FOSSMEC community event";
+  // Fetch event data from Supabase
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        setLoading(true);
+        
+        const { data, error } = await supabase
+          .from('events')
+          .select('*')
+          .eq('id', eventId)
+          .single();
+
+        if (error) {
+          throw error;
+        }
+
+        if (data) {
+          setEvent(data);
+        } else {
+          setError('Event not found');
+        }
+      } catch (err) {
+        console.error('Error fetching event:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (eventId) {
+      fetchEvent();
     }
-  };
+  }, [eventId]);
 
   const handleBackToEvents = () => {
     router.push("/#events");
@@ -112,13 +88,26 @@ const EventDetailsPage = () => {
     }, 100);
   };
 
-  if (!event) {
+  // Loading state
+  if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-white">Event not found</p>
+        <div className="text-white">Loading event...</div>
       </div>
     );
   }
+
+  // Error state
+  if (error || !event) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-white">Event not found</div>
+      </div>
+    );
+  }
+
+  // Get the gallery images
+  const galleryImages = getGalleryImages();
 
   return (
     <div className="flex flex-col font-dm-mono overflow-x-hidden min-h-screen">
@@ -158,12 +147,12 @@ const EventDetailsPage = () => {
 
             {/* Title */}
             <h1 className="font-normal text-[24px] sm:text-[28px] md:text-[32px] lg:text-[37.35px] leading-[32px] sm:leading-[38px] md:leading-[44px] lg:leading-[51.84px] tracking-[-0.5px] sm:tracking-[-0.6px] md:tracking-[-0.7px] lg:tracking-[-0.77px] align-middle uppercase font-martian-mono text-white">
-              {event.title}
+              {event.name}
             </h1>
 
             {/* One Line Description */}
             <p className="font-normal text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20.2px] leading-[24px] sm:leading-[28px] md:leading-[30px] lg:leading-[32.64px] tracking-[0px] text-[#ABA9A7] font-martian-mono">
-              {getEventOneline(event.id)}
+              {event.event_oneline}
             </p>
 
             {/* Event Image */}
@@ -177,15 +166,15 @@ const EventDetailsPage = () => {
                 <div
                   className="absolute inset-0 
                   before:absolute before:h-[8px] before:w-[8px] sm:before:h-[10px] sm:before:w-[10px] md:before:h-[12px] md:before:w-[12px] before:border-[#ACAB4F] before:border-b-[3px] sm:before:border-b-[3px] md:before:border-b-[4px] before:border-l-[3px] sm:before:border-l-[3px] md:before:border-l-[4px] before:bottom-[-2px] before:left-[-2px]
-                  after:absolute after:h-[8px] after:w-[8px] sm:after:h-[10px] sm:after:w-[10px] md:after:h-[12px] md:after:w-[12px] after:border-[#ACAB4F] after:border-b-[3px] sm:after:border-b-[3px] md:after:border-b-[4px] after:border-r-[3px] sm:after:border-r-[3px] md:after:border-r-[4px] after:bottom-[-2px] after:right-[-2px]"
+                  after:absolute after:h-[8px] after:w-[8px] sm:after:h-[10px] sm:after:w-[10px] md:after:h-[12px] md:after:w-[12px] after:border-[#ACAB4F] after:border-b-[3px] sm:after:border-b-[3px] md:after:border-r-[3px] sm:after:border-r-[3px] md:after:border-r-[4px] after:bottom-[-2px] after:right-[-2px]"
                 />
 
                 {/* Image container with proper padding */}
                 <div className="relative w-full h-full p-2 sm:p-3 md:p-4">
                   <div className="relative w-full h-full overflow-hidden">
                     <Image
-                      src={event.image}
-                      alt={event.title}
+                      src={bucketBase + event.year + "/" + event.cover_image}
+                      alt={event.name}
                       fill
                       className="object-cover"
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 1024px"
@@ -198,7 +187,7 @@ const EventDetailsPage = () => {
             {/* Description */}
             <div>
               <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20.2px] leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[32.64px] tracking-[0px] text-[#ABA9A7] font-martian-mono">
-                {getEventDescription(event.id)}
+                {event.event_short_desc}
               </p>
             </div>
 
@@ -207,15 +196,29 @@ const EventDetailsPage = () => {
               <h2 className="text-lg sm:text-xl md:text-xl lg:text-2xl font-martian-mono font-semibold text-white mb-2 sm:mb-3">
                 Event Details
               </h2>
-              <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20.2px] leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[32.64px] tracking-[0px] text-[#ABA9A7] font-martian-mono">
-                This event was organized by FOSSMEC (Free and Open Source
-                Software Club of Model Engineering College) as part of our
-                ongoing commitment to promoting open source culture and
-                collaborative development. The event took place at Government
-                Model Engineering College, bringing together students,
-                developers, and enthusiasts from the open source community to
-                learn, share, and contribute to meaningful projects.
-              </p>
+              <div className="space-y-2">
+                {event.year && (
+                  <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20.2px] leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[32.64px] tracking-[0px] text-[#ABA9A7] font-martian-mono">
+                    <span className="text-white">Year:</span> {event.year}
+                  </p>
+                )}
+                {event.event_venue && (
+                  <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20.2px] leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[32.64px] tracking-[0px] text-[#ABA9A7] font-martian-mono">
+                    <span className="text-white">Venue:</span> {event.event_venue}
+                  </p>
+                )}
+                <br/>
+                <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20.2px] leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[32.64px] tracking-[0px] text-[#ABA9A7] font-martian-mono">
+                  {event.event_content &&
+                    event.event_content.split('\n').map((line, idx) => (
+                      <span key={idx} >
+                        {line}
+                        <br />
+                      </span>
+                    ))
+                  }
+                </p>
+              </div>
             </div>
 
             {/* Infinite Scrolling Images */}
@@ -223,118 +226,32 @@ const EventDetailsPage = () => {
               <div className="flex animate-scroll">
                 {/* First set of images */}
                 <div className="flex flex-shrink-0 space-x-2 sm:space-x-3 md:space-x-4">
-                  <div className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt="Gallery image 1"
-                      width={256}
-                      height={160}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt="Gallery image 2"
-                      width={256}
-                      height={160}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt="Gallery image 3"
-                      width={256}
-                      height={160}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt="Gallery image 4"
-                      width={256}
-                      height={160}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt="Gallery image 5"
-                      width={256}
-                      height={160}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt="Gallery image 6"
-                      width={256}
-                      height={160}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
+                  {galleryImages.map((imageSrc, index) => (
+                    <div key={index} className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
+                      <Image
+                        src={bucketBase + event.year + "/" + imageSrc}
+                        alt={`Gallery image ${index + 1}`}
+                        width={256}
+                        height={160}
+                        className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
+                      />
+                    </div>
+                  ))}
                 </div>
 
                 {/* Duplicate set for seamless loop */}
                 <div className="flex flex-shrink-0 space-x-2 sm:space-x-3 md:space-x-4 ml-2 sm:ml-3 md:ml-4">
-                  <div className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt="Gallery image 1"
-                      width={256}
-                      height={160}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt="Gallery image 2"
-                      width={256}
-                      height={160}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt="Gallery image 3"
-                      width={256}
-                      height={160}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt="Gallery image 4"
-                      width={256}
-                      height={160}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt="Gallery image 5"
-                      width={256}
-                      height={160}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                    <Image
-                      src={event.image}
-                      alt="Gallery image 6"
-                      width={256}
-                      height={160}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
+                  {galleryImages.map((imageSrc, index) => (
+                    <div key={`dup-${index}`} className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
+                      <Image
+                        src={bucketBase + event.year + "/" + imageSrc}
+                        alt={`Gallery image ${index + 1}`}
+                        width={256}
+                        height={160}
+                        className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

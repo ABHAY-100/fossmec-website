@@ -19,6 +19,17 @@ const nextConfig = {
   async rewrites() {
     return [];
   },
+  // Configure allowed image domains for Next.js Image component
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'zyolfylglkqvlkttrxas.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

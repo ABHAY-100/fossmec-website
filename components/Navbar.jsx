@@ -105,7 +105,7 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
             }}
           >
             {selectedEvent
-              ? `EVENTS / ${selectedEvent.title.toUpperCase()}`
+              ? `EVENTS / ${selectedEvent.name.toUpperCase()}`
               : "EVENTS"}
           </a>
           <a
@@ -161,7 +161,7 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
           }}
         >
           {selectedEvent
-            ? `EVENTS / ${selectedEvent.title.toUpperCase()}`
+            ? `EVENTS / ${selectedEvent.name.toUpperCase()}`
             : "EVENTS"}
         </a>
         <a

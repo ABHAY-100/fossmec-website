@@ -26,7 +26,7 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
 
   return (
     <div
-      className={`flex flex-col px-5 md:px-15 fixed top-0 left-0 w-full z-50 transition-all duration-300 
+      className={`flex flex-col px-5 md:px-15 fixed top-0 left-0 w-full z-100 transition-all duration-300 
         ${mobileMenuOpen ? "h-auto" : "h-[89px]"}
         ${
           scrolled && !mobileMenuOpen

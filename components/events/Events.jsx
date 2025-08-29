@@ -48,11 +48,11 @@ const Events = () => {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-        
+
         const { data, error } = await supabase
-          .from('events')
-          .select('*')
-          .order('id', { ascending: true });
+          .from("events")
+          .select("*")
+          .order("id", { ascending: true });
 
         if (error) {
           throw error;
@@ -65,17 +65,17 @@ const Events = () => {
             id: event.id,
             title: event.name,
             borderColor: getBorderColor(index),
-            position: positions[index] || { x: 20, y: 20 + (index * 60) },
+            position: positions[index] || { x: 20, y: 20 + index * 60 },
             image: `${bucketBase}/${event.year}/${event.cover_image}`,
             backContent: event.event_short_desc,
             year: event.year,
           }));
-          
+
           setAllEvents(mappedEvents);
           setCards(mappedEvents);
         }
       } catch (err) {
-        console.error('Error fetching events:', err);
+        console.error("Error fetching events:", err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -89,7 +89,7 @@ const Events = () => {
   const getBorderColor = (index) => {
     const colors = [
       "border-yellow-500/60",
-      "border-blue-500/60", 
+      "border-blue-500/60",
       "border-teal-500/60",
       "border-purple-500/60",
       "border-orange-500/60",
@@ -102,13 +102,15 @@ const Events = () => {
   // Function to filter events by year
   const filterEventsByYear = (year) => {
     setSelectedYear(year);
-    const filtered = allEvents.filter(event => event.year === parseInt(year));
+    const filtered = allEvents.filter((event) => event.year === parseInt(year));
     setCards(filtered);
   };
 
   // Get unique years from events
   const getUniqueYears = () => {
-    const years = [...new Set(allEvents.map(event => event.year))].sort((a, b) => b - a);
+    const years = [...new Set(allEvents.map((event) => event.year))].sort(
+      (a, b) => b - a
+    );
     return years;
   };
 
@@ -134,7 +136,7 @@ const Events = () => {
       setCards((prevCards) =>
         prevCards.map((card, index) => ({
           ...card,
-          position: newPositions[index] || { x: 20, y: 20 + (index * 60) },
+          position: newPositions[index] || { x: 20, y: 20 + index * 60 },
         }))
       );
     }
@@ -160,31 +162,46 @@ const Events = () => {
       id="events"
     >
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col h-full py-8">
-        <h2 className="text-3xl md:text-4xl font-semibold italic uppercase text-left px-2 mt-25 mb-6 font-uncut-sans tracking-tight leading-none bg-gradient-to-r from-[#C0AE42] via-[#379CA2] to-[#2C7FDC] bg-clip-text text-transparent">
+        <h2 className="text-3xl md:text-4xl font-semibold italic uppercase text-center px-2 mt-25 mb-6 font-uncut-sans tracking-tight leading-none bg-gradient-to-r from-[#C0AE42] via-[#379CA2] to-[#2C7FDC] bg-clip-text text-transparent">
           &lt;WHAT ABOUT EVENTS?&gt;
         </h2>
 
         {!loading && allEvents.length > 0 && (
-          <div className="flex mb-8 px-4">
-            <select 
-              value={selectedYear}
-              onChange={(e) => filterEventsByYear(e.target.value)}
-              className="bg-transparent border-2 border-[#379CA2] rounded-md px-4 py-2 text-[#DAE2E9E0] focus:outline-none focus:border-[#C0AE42] transition-colors cursor-pointer font-martian-mono"
-            >
-              {getUniqueYears().map((year) => (
-                <option 
-                  key={year} 
-                  value={year.toString()}
-                  className="bg-[#1a1a1a] text-[#DAE2E9E0]"
+          <div className="mb-8 px-4 w-fit mx-auto max-md:scale-90">
+            <div className="relative">
+              <select
+                value={selectedYear}
+                onChange={(e) => filterEventsByYear(e.target.value)}
+                className="bg-transparent border-2 border-[#DAE2E9E0]/12 rounded-xs px-4 py-2 pr-12 text-[#DAE2E9E0] focus:outline-none transition-colors cursor-pointer appearance-none w-full"
+              >
+                {[...getUniqueYears()].map((year) => (
+                  <option
+                    key={year}
+                    value={year.toString()}
+                    className="bg-[#1a1a1a] text-[#DAE2E9E0]"
+                  >
+                    Events {year}
+                  </option>
+                ))}
+              </select>
+              <div className="absolute right-2.5 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                <svg
+                  className="w-[19px] h-[19px] text-[#DAE2E9E0]/70"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
                 >
-                  Events {year}
-                </option>
-              ))}
-            </select>
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
           </div>
         )}
 
-        <p className="font-dm-mono text-white text-lg md:text-2xl mx-auto mb-8 font-normal tracking-tight leading-[120%] max-w-[1000px] mt-10 px-4 text-left">
+        <p className="text-white lg:text-[23px] sm:text-xl leading-relaxed font-mono text-center mx-auto mb-8 max-w-[1000px] mt-10 px-4">
           Our events focus on FOSS, featuring expert talks, practical workshops,
           and collaborative spaces for students and tech enthusiasts.
         </p>
@@ -195,20 +212,26 @@ const Events = () => {
             <div className="flex items-center justify-center min-h-[400px]">
               <div className="text-center">
                 <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white mb-4"></div>
-                <p className="text-white font-dm-mono text-lg">Loading events...</p>
+                <p className="text-white font-dm-mono text-lg">
+                  Loading events...
+                </p>
               </div>
             </div>
           ) : error ? (
             <div className="flex items-center justify-center min-h-[400px]">
               <div className="text-center">
-                <p className="text-red-400 font-dm-mono text-lg mb-4">Error loading events</p>
+                <p className="text-red-400 font-dm-mono text-lg mb-4">
+                  Error loading events
+                </p>
                 <p className="text-white/70 font-dm-mono text-sm">{error}</p>
               </div>
             </div>
           ) : cards.length === 0 ? (
             <div className="flex items-center justify-center min-h-[400px]">
               <div className="text-center">
-                <p className="text-white/70 font-dm-mono text-lg">No events found</p>
+                <p className="text-white/70 font-dm-mono text-lg">
+                  No events found
+                </p>
               </div>
             </div>
           ) : (

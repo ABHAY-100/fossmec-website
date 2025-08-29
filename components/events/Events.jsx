@@ -329,7 +329,7 @@ const Events = () => {
             <>
               {isMobile ? (
                 <div className="px-2">
-                  <Carousel className="w-full">
+                  <Carousel className="w-full max-w-[480px] mx-auto max-sm:max-w-[360px]">
                     <CarouselContent>
                       {cards.map((card) => (
                         <CarouselItem key={card.id} className="w-full">

@@ -12,35 +12,110 @@ import useMediaQuery from "@/hooks/use-media-query";
 import { bucketBase, supabase } from "@/lib/supabase";
 
 const Events = () => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 920px)");
   const [cards, setCards] = useState([]);
   const [allEvents, setAllEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedYear, setSelectedYear] = useState("all");
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  const calculateContainerHeight = (cardCount) => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      return cardCount * 360 + 80; // 320px card height + 40px gap + extra padding
+    }
+    
+    const cardHeight = 320;
+    const gap = 40;
+    const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 1200;
+    const containerPadding = 20; // Minimal padding
+    const cardWidth = 400;
+    
+    const maxCardsPerRow = Math.max(1, Math.floor((viewportWidth - containerPadding * 2) / (cardWidth + gap)));
+    const rows = Math.ceil(cardCount / maxCardsPerRow);
+    
+    // Calculate exact height needed: top margin + rows * (card height + gap) + bottom padding
+    const topMargin = 40;
+    const bottomPadding = 60;
+    
+    return topMargin + rows * (cardHeight + gap) - gap + bottomPadding; // Subtract gap from last row
+  };
+
+  const calculateFallbackPosition = (index, totalCards) => {
+    const cardWidth = 400;
+    const cardHeight = 320;
+    const gap = 40;
+    
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 768;
+      const startX = Math.max(20, (viewportWidth - cardWidth) / 2); // Center single card
+      const topMargin = 40;
+      return { x: startX, y: topMargin + index * (cardHeight + gap) };
+    }
+    
+    const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 1200;
+    const containerPadding = 20; // Minimal left and right padding
+    
+    const maxCardsPerRow = Math.max(1, Math.floor((viewportWidth - containerPadding * 2) / (cardWidth + gap)));
+    
+    const row = Math.floor(index / maxCardsPerRow);
+    const col = index % maxCardsPerRow;
+    
+    const totalRowWidth = maxCardsPerRow * cardWidth + (maxCardsPerRow - 1) * gap;
+    const startX = Math.max(containerPadding, (viewportWidth - totalRowWidth) / 2);
+    
+    const topMargin = 40;
+    
+    return {
+      x: startX + col * (cardWidth + gap),
+      y: topMargin + row * (cardHeight + gap)
+    };
+  };
 
   const getInitialPositions = () => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
+      const topMargin = 40;
+      const cardWidth = 400;
+      const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 768;
+      const startX = Math.max(20, (viewportWidth - cardWidth) / 2); // Center single card
+      
       return [
-        { x: 20, y: 20 }, // mobile positions
-        { x: 20, y: 370 },
-        { x: 20, y: 720 },
-        { x: 20, y: 1070 },
-        { x: 20, y: 1420 },
-        { x: 20, y: 1770 },
-        { x: 20, y: 2120 },
+        { x: startX, y: topMargin },
+        { x: startX, y: topMargin + 360 }, // 320px card height + 40px gap
+        { x: startX, y: topMargin + 700 },
+        { x: startX, y: topMargin + 1040 },
+        { x: startX, y: topMargin + 1380 },
+        { x: startX, y: topMargin + 1720 },
+        { x: startX, y: topMargin + 2060 },
       ];
     }
 
-    return [
-      { x: 20, y: 20 },
-      { x: 140, y: 60 },
-      { x: 260, y: 100 },
-      { x: 380, y: 140 },
-      { x: 500, y: 180 },
-      { x: 620, y: 220 },
-      { x: 740, y: 260 },
-    ];
+    const cardWidth = 400;
+    const cardHeight = 320;
+    const gap = 40;
+    
+    const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 1200;
+    const containerPadding = 20; // Minimal left and right padding
+    
+    const maxCardsPerRow = Math.max(1, Math.floor((viewportWidth - containerPadding * 2) / (cardWidth + gap)));
+    
+    const totalRowWidth = maxCardsPerRow * cardWidth + (maxCardsPerRow - 1) * gap;
+    const startX = Math.max(containerPadding, (viewportWidth - totalRowWidth) / 2);
+    
+    const topMargin = 40;
+    
+    const positions = [];
+    for (let i = 0; i < 7; i++) {
+      const row = Math.floor(i / maxCardsPerRow);
+      const col = i % maxCardsPerRow;
+      
+      positions.push({
+        x: startX + col * (cardWidth + gap),
+        y: topMargin + row * (cardHeight + gap)
+      });
+    }
+    
+    return positions;
   };
 
   // Fetch events from Supabase
@@ -65,7 +140,7 @@ const Events = () => {
             id: event.id,
             title: event.name,
             borderColor: getBorderColor(index),
-            position: positions[index] || { x: 20, y: 20 + index * 60 },
+            position: positions[index] || calculateFallbackPosition(index, positions.length),
             image: `${bucketBase}/${event.year}/${event.cover_image}`,
             backContent: event.event_short_desc,
             year: event.year,
@@ -73,6 +148,7 @@ const Events = () => {
 
           setAllEvents(mappedEvents);
           setCards(mappedEvents);
+          setIsInitialized(true);
         }
       } catch (err) {
         console.error("Error fetching events:", err);
@@ -136,19 +212,34 @@ const Events = () => {
       setCards((prevCards) =>
         prevCards.map((card, index) => ({
           ...card,
-          position: newPositions[index] || { x: 20, y: 20 + index * 60 },
+          position: newPositions[index] || calculateFallbackPosition(index, newPositions.length),
         }))
       );
     }
   }, [cards.length]);
 
+  const clampPosition = (position) => {
+    // Allow dragging across the full page size (not just the viewport)
+    const cardWidth = 400;
+    const cardHeight = 320;
+    const doc = typeof document !== "undefined" ? document.documentElement : null;
+    const pageWidth = doc ? Math.max(doc.scrollWidth, doc.clientWidth) : 1200;
+    const pageHeight = doc ? Math.max(doc.scrollHeight, doc.clientHeight) : 2000;
+
+    return {
+      x: Math.max(0, Math.min(position.x, pageWidth - cardWidth - 20)),
+      y: Math.max(0, Math.min(position.y, pageHeight - cardHeight - 20))
+    };
+  };
+
   const handleDragEnd = (id, newPosition) => {
+    const clampedPosition = clampPosition(newPosition);
     setCards((prevCards) =>
       prevCards.map((card) => {
         if (card.id === id) {
           return {
             ...card,
-            position: newPosition,
+            position: clampedPosition,
           };
         }
         return card;
@@ -158,16 +249,16 @@ const Events = () => {
 
   return (
     <div
-      className="min-h-screen relative px-4 md:px-8 flex flex-col"
+      className="min-h-screen relative flex flex-col"
       id="events"
     >
-      <div className="max-w-7xl mx-auto relative z-10 flex flex-col h-full py-8">
+      <div className="w-full relative z-10 flex flex-col h-full py-8">
         <h2 className="text-3xl md:text-4xl font-semibold italic uppercase text-center px-2 mt-25 mb-6 font-uncut-sans tracking-tight leading-none bg-gradient-to-r from-[#C0AE42] via-[#379CA2] to-[#2C7FDC] bg-clip-text text-transparent">
           &lt;WHAT ABOUT EVENTS?&gt;
         </h2>
 
         {!loading && allEvents.length > 0 && (
-          <div className="mb-8 px-4 w-fit mx-auto max-md:scale-90">
+          <div className="mb-8 w-fit mx-auto max-md:scale-90">
             <div className="relative">
               <select
                 value={selectedYear}
@@ -201,13 +292,13 @@ const Events = () => {
           </div>
         )}
 
-        <p className="text-white lg:text-[23px] sm:text-xl leading-relaxed font-mono text-center mx-auto mb-8 max-w-[1000px] mt-10 px-4">
+        <p className="text-white lg:text-[23px] sm:text-xl leading-relaxed font-mono text-center mx-auto mb-8 max-w-[1000px] mt-10 px-[20px]">
           Our events focus on FOSS, featuring expert talks, practical workshops,
           and collaborative spaces for students and tech enthusiasts.
         </p>
 
         {/* Year Filter Dropdown */}
-        <div className="relative mt-8">
+        <div className="relative mt-8 overflow-visible">
           {loading ? (
             <div className="flex items-center justify-center min-h-[400px]">
               <div className="text-center">
@@ -262,7 +353,12 @@ const Events = () => {
                   </Carousel>
                 </div>
               ) : (
-                <div className="relative min-h-[600px] md:min-h-[800px] lg:min-h-[600px]">
+                <div 
+                  className="relative px-4" 
+                  style={{
+                    minHeight: cards.length > 0 ? `${calculateContainerHeight(cards.length)}px` : '800px'
+                  }}
+                >
                   {cards.map((card) => (
                     <EventCard
                       key={card.id}

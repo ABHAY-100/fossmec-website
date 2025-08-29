@@ -104,9 +104,14 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
               }
             }}
           >
-            {selectedEvent
-              ? `EVENTS / ${selectedEvent.name.toUpperCase()}`
-              : "EVENTS"}
+            {selectedEvent ? (
+              <>
+                <span>EVENTS</span>
+                <span className="text-[#FFD022]"> {`/ ${selectedEvent.name.toUpperCase()}`}</span>
+              </>
+            ) : (
+              "EVENTS"
+            )}
           </a>
           <a
             href={isEventPage ? "/" : "#team"}
@@ -160,9 +165,14 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
             }
           }}
         >
-          {selectedEvent
-            ? `EVENTS / ${selectedEvent.name.toUpperCase()}`
-            : "EVENTS"}
+          {selectedEvent ? (
+            <>
+              <span>EVENTS</span>
+              <span className="text-[#FFD022]"> {`/ ${selectedEvent.name.toUpperCase()}`}</span>
+            </>
+          ) : (
+            "EVENTS"
+          )}
         </a>
         <a
           href={isEventPage ? "/" : "#team"}

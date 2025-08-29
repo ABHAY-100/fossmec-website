@@ -32,7 +32,7 @@ const Footer = () => {
     },
     {
       href: "https://x.com/FossMec",
-      text: "X",
+      text: "X / Twitter",
       icon: FaXTwitter,
     },
     {
@@ -90,9 +90,9 @@ const Footer = () => {
         <div className="absolute inset-0 backdrop-blur-[4px] bg-white/5 border-t border-t-[#FFFFFF29]" />
         <div
           className="relative z-20 font-dmMono max-w-[1500px] mx-auto flex flex-row max-md:flex-col
-        max-md:gap-2 justify-between items-center space-y-4 text-sm text-white/55 font-medium h-full px-6 py-6 mt-1"
+        max-md:gap-2 justify-between items-center space-y-4 text-sm text-white/50 font-medium h-full px-6 py-6 mt-1"
         >
-          <div className="flex flex-col mb-4 md:mb-0 font-mono gap-2">
+          <div className="flex flex-col mb-4 md:mb-0 font-mono gap-2 max-md:text-center text-left">
             <p>
               🄯 2025 FOSS MEC |{" "}
               <a
@@ -104,11 +104,8 @@ const Footer = () => {
               </a>
             </p>
             <p>
-              Contact Us:{" "}
-              <a
-                href="mailto:foss@mec.ac.in"
-                className="hover:text-[#FFD022]/[0.7] transition"
-              >
+              Contact us at{" "}
+              <a href="mailto:foss@mec.ac.in" className="text-[#FFD022]/[0.7]">
                 foss@mec.ac.in
               </a>
             </p>
@@ -122,10 +119,10 @@ const Footer = () => {
                   key={index}
                   href={social.href}
                   target="_blank"
-                  className="hover:text-white transition"
+                  className="hover:text-white transition font-semibold"
                 >
-                  <span className="flex max-lg:hidden">{social.text}</span>
-                  <IconComponent className="h-5 w-5 max-lg:flex hidden" />
+                  <span className="flex max-xl:hidden">{social.text}</span>
+                  <IconComponent className="h-5 w-5 max-xl:flex hidden" />
                 </a>
               );
             })}

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import logo from "../assets/logo.svg";
 import Image from "next/image";
 
@@ -107,7 +106,10 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
             {selectedEvent ? (
               <>
                 <span>EVENTS</span>
-                <span className="text-[#FFD022]"> {`/ ${selectedEvent.name.toUpperCase()}`}</span>
+                <span className="text-[#FFD022]">
+                  {" "}
+                  {`/ ${selectedEvent.name.toUpperCase()}`}
+                </span>
               </>
             ) : (
               "EVENTS"
@@ -168,7 +170,10 @@ const Navbar = ({ selectedEvent, onEventTitleClick, isEventPage }) => {
           {selectedEvent ? (
             <>
               <span>EVENTS</span>
-              <span className="text-[#FFD022]"> {`/ ${selectedEvent.name.toUpperCase()}`}</span>
+              <span className="text-[#FFD022]">
+                {" "}
+                {`/ ${selectedEvent.name.toUpperCase()}`}
+              </span>
             </>
           ) : (
             "EVENTS"

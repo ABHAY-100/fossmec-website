@@ -1,46 +1,33 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Calendar, MapPin } from "lucide-react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import bg from "@/assets/bg.svg";
 import { bucketBase, supabase } from "@/lib/supabase";
+import CircularGallery from "@/components/reactbits/CircularGallery";
 
 const EventDetailsPage = () => {
   const params = useParams();
   const router = useRouter();
   const eventId = parseInt(params.id);
-  
+
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Function to get 6 images for the gallery
+  // Get gallery images from event data
   const getGalleryImages = () => {
-    if (!event || !event.images) {
-      // If no images, return 6 copies of the default image
-      return Array(6).fill("/assets/events/CR.jpeg");
+    if (!event || !event.images || !Array.isArray(event.images)) {
+      return [];
     }
-    
-    // If images is an array, use it
-    if (Array.isArray(event.images)) {
-      const images = [...event.images];
-      let i = 0;
-      while (images.length < 6) {
-        images.push(images[i] || "/assets/events/CR.jpeg");
-        i++;
-      }
-      return images.slice(0, 6);
-    }
-    
-    // If images is a single string, duplicate it 6 times
-    if (typeof event.images === 'string') {
-      return Array(6).fill(event.images);
-    }
-    
-    // Fallback to default image
-    return Array(6).fill("/assets/events/CR.jpeg");
+
+    // Filter out empty or invalid image paths
+    return event.images.filter(
+      (img) => img && typeof img === "string" && img.trim() !== ""
+    );
   };
 
   // Fetch event data from Supabase
@@ -48,11 +35,11 @@ const EventDetailsPage = () => {
     const fetchEvent = async () => {
       try {
         setLoading(true);
-        
+
         const { data, error } = await supabase
-          .from('events')
-          .select('*')
-          .eq('id', eventId)
+          .from("events")
+          .select("*")
+          .eq("id", eventId)
           .single();
 
         if (error) {
@@ -62,10 +49,10 @@ const EventDetailsPage = () => {
         if (data) {
           setEvent(data);
         } else {
-          setError('Event not found');
+          setError("Event not found");
         }
       } catch (err) {
-        console.error('Error fetching event:', err);
+        console.error("Error fetching event:", err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -79,7 +66,6 @@ const EventDetailsPage = () => {
 
   const handleBackToEvents = () => {
     router.push("/#events");
-    // Add a small delay to ensure navigation happens, then scroll
     setTimeout(() => {
       const eventsSection = document.getElementById("events");
       if (eventsSection) {
@@ -91,8 +77,8 @@ const EventDetailsPage = () => {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-white">Loading event...</div>
+      <div className="min-h-screen flex items-center justify-center bg-our-bg">
+        <div className="text-white font-martian-mono">Loading event...</div>
       </div>
     );
   }
@@ -100,14 +86,27 @@ const EventDetailsPage = () => {
   // Error state
   if (error || !event) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-white">Event not found</div>
+      <div className="min-h-screen flex items-center justify-center bg-our-bg">
+        <div className="text-white font-martian-mono">Event not found</div>
       </div>
     );
   }
 
-  // Get the gallery images
   const galleryImages = getGalleryImages();
+  const hasGalleryImages = galleryImages.length > 0;
+
+  const getCircularGalleryItems = () => {
+    if (!hasGalleryImages) return [];
+
+    return galleryImages.map((imageSrc, index) => ({
+      image: bucketBase + event.year + "/" + imageSrc,
+      text: `${event.name} - ${index + 1}`,
+    }));
+  };
+
+  const circularGalleryItems = getCircularGalleryItems();
+
+  const shouldShowGallery = hasGalleryImages && circularGalleryItems.length > 0;
 
   return (
     <div className="flex flex-col font-dm-mono overflow-x-hidden min-h-screen">
@@ -125,137 +124,173 @@ const EventDetailsPage = () => {
         />
       </div>
 
-      {/* Event content */}
-      <div className="relative z-10 pt-20 pb-4 sm:pb-6 md:pb-8 px-2 sm:px-4 md:px-6 lg:px-8">
-        <div className="max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto">
-          <div className="space-y-3 sm:space-y-4 md:space-y-6">
-            {/* Back Button */}
-            <button
-              onClick={handleBackToEvents}
-              className="flex items-center gap-2 sm:gap-3 text-white/80 hover:text-white transition-colors duration-200 group
-                         px-3 py-2 sm:px-4 sm:py-3 md:px-5 md:py-3
-                         h-8 sm:h-10 md:h-12
-                         rounded-lg sm:rounded-xl
-                         bg-white/10 backdrop-blur-sm
-                         w-auto"
-            >
-              <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:-translate-x-1 transition-transform duration-200" />
-              <span className="font-martian-mono text-xs sm:text-sm md:text-base whitespace-nowrap">
-                Back to Events
-              </span>
-            </button>
+      {/* Main Event Content */}
+      <div className="relative z-10 pt-24 sm:pt-28 md:pt-32 pb-12 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <div className="max-w-7xl mx-auto">
+          {/* Back Button */}
+          <button
+            onClick={handleBackToEvents}
+            className="flex items-center cursor-pointer gap-2 text-white/70 hover:text-white transition-all duration-200 group mb-6 sm:mb-8"
+          >
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform duration-200" />
+            <span className="font-martian-mono text-sm sm:text-base">Back</span>
+          </button>
 
-            {/* Title */}
-            <h1 className="font-normal text-[24px] sm:text-[28px] md:text-[32px] lg:text-[37.35px] leading-[32px] sm:leading-[38px] md:leading-[44px] lg:leading-[51.84px] tracking-[-0.5px] sm:tracking-[-0.6px] md:tracking-[-0.7px] lg:tracking-[-0.77px] align-middle uppercase font-martian-mono text-white">
+          {/* Hero Section */}
+          <div className="mb-8 sm:mb-12 md:mb-16">
+            {/* Event Title */}
+            <h1 className="font-martian-mono font-normal text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight text-white mb-4 sm:mb-6 uppercase">
               {event.name}
             </h1>
 
-            {/* One Line Description */}
-            <p className="font-normal text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20.2px] leading-[24px] sm:leading-[28px] md:leading-[30px] lg:leading-[32.64px] tracking-[0px] text-[#ABA9A7] font-martian-mono">
-              {event.event_oneline}
-            </p>
+            {/* Subtitle */}
+            {event.event_oneline && (
+              <p className="font-martian-mono text-base sm:text-lg md:text-xl text-[#ABA9A7] max-w-5xl leading-relaxed">
+                {event.event_oneline}
+              </p>
+            )}
 
-            {/* Event Image */}
-            <div className="relative w-full aspect-video overflow-hidden">
+            {/* Metadata */}
+            <div className="flex flex-wrap items-center gap-5 sm:gap-6 mt-6 sm:mt-8">
+              {event.year && (
+                <div className="flex items-center gap-2 text-[#ABA9A7]">
+                  <Calendar className="w-4.01 h-4 text-[#FFD022]" />
+                  <span className="font-martian-mono text-sm sm:text-base">
+                    {event.year}
+                  </span>
+                </div>
+              )}
+              {event.event_venue && (
+                <div className="flex items-center gap-2 text-[#ABA9A7]">
+                  <MapPin className="w-4.01 h-4.5 text-[#FFD022]" />
+                  <span className="font-martian-mono text-sm sm:text-base">
+                    {event.event_venue}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Cover Image Section */}
+          {event.cover_image && (
+            <div className="mb-12 sm:mb-16 md:mb-20">
               <div
-                className="inset-0 bg-white/10 relative w-full h-full group transition-all duration-[0.75s] border border-white/10 backdrop-blur-[3px]
-                before:absolute before:h-[8px] before:w-[8px] sm:before:h-[10px] sm:before:w-[10px] md:before:h-[12px] md:before:w-[12px] before:border-[#ACAB4F] before:border-t-[3px] sm:before:border-t-[3px] md:before:border-t-[4px] before:border-l-[3px] sm:before:border-l-[3px] md:before:border-l-[4px] before:top-[-2px] before:left-[-2px]
-                after:absolute after:h-[8px] after:w-[8px] sm:after:h-[10px] sm:after:w-[10px] md:after:h-[12px] md:after:w-[12px] after:border-[#ACAB4F] after:border-t-[3px] sm:after:border-t-[3px] md:after:border-t-[4px] after:border-r-[3px] sm:after:border-r-[3px] md:after:border-r-[4px] after:top-[-2px] after:right-[-2px]"
+                className="relative w-full aspect-video sm:aspect-[16/9] overflow-hidden
+                            border border-white/10 bg-white/5 backdrop-blur-sm
+                            before:absolute before:h-3 before:w-3 sm:before:h-4 sm:before:w-4 before:border-[#FFD022] before:border-t-2 before:border-l-2 before:top-0 before:left-0 z-10
+                            after:absolute after:h-3 after:w-3 sm:after:h-4 sm:after:w-4 after:border-[#FFD022] after:border-t-2 after:border-r-2 after:top-0 after:right-0 z-10
+                            group py-1.5 px-1"
               >
-                {/* Bottom border corners */}
-                <div
-                  className="absolute inset-0 
-                  before:absolute before:h-[8px] before:w-[8px] sm:before:h-[10px] sm:before:w-[10px] md:before:h-[12px] md:before:w-[12px] before:border-[#ACAB4F] before:border-b-[3px] sm:before:border-b-[3px] md:before:border-b-[4px] before:border-l-[3px] sm:before:border-l-[3px] md:before:border-l-[4px] before:bottom-[-2px] before:left-[-2px]
-                  after:absolute after:h-[8px] after:w-[8px] sm:after:h-[10px] sm:after:w-[10px] md:after:h-[12px] md:after:w-[12px] after:border-[#ACAB4F] after:border-b-[3px] sm:after:border-b-[3px] md:after:border-r-[3px] sm:after:border-r-[3px] md:after:border-r-[4px] after:bottom-[-2px] after:right-[-2px]"
-                />
+                {/* Bottom corners */}
+                <div className="absolute bottom-0 left-0 h-3 w-3 sm:h-4 sm:w-4 border-[#FFD022] border-b-2 border-l-2 z-10" />
+                <div className="absolute bottom-0 right-0 h-3 w-3 sm:h-4 sm:w-4 border-[#FFD022] border-b-2 border-r-2 z-10" />
 
-                {/* Image container with proper padding */}
-                <div className="relative w-full h-full p-2 sm:p-3 md:p-4">
+                {/* Image */}
+                <div className="relative w-full h-full p-1 sm:p-2">
                   <div className="relative w-full h-full overflow-hidden">
                     <Image
                       src={bucketBase + event.year + "/" + event.cover_image}
                       alt={event.name}
                       fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 1024px"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1280px"
+                      priority
                     />
                   </div>
                 </div>
               </div>
             </div>
+          )}
 
-            {/* Description */}
-            <div>
-              <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20.2px] leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[32.64px] tracking-[0px] text-[#ABA9A7] font-martian-mono">
-                {event.event_short_desc}
-              </p>
+          {/* Content Sections */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12 md:gap-16 mb-12 sm:mb-16 md:mb-20">
+            {/* Main Content Column */}
+            <div className="lg:col-span-2 space-y-8 sm:space-y-10 md:space-y-12">
+              {/* Overview Section */}
+              {event.event_short_desc && (
+                <section>
+                  <h2 className="font-martian-mono text-xl sm:text-2xl md:text-3xl font-semibold text-white mb-4 sm:mb-6">
+                    Overview
+                  </h2>
+                  <div className="prose prose-invert max-w-none">
+                    <p className="font-martian-mono text-sm sm:text-base md:text-lg text-[#ABA9A7] leading-relaxed">
+                      {event.event_short_desc}
+                    </p>
+                  </div>
+                </section>
+              )}
+
+              {/* Event Content Section */}
+              {event.event_content && (
+                <section>
+                  <div className="prose prose-invert max-w-none">
+                    <p className="font-martian-mono text-sm sm:text-base md:text-lg text-[#ABA9A7] leading-relaxed whitespace-pre-line">
+                      {event.event_content}
+                    </p>
+                  </div>
+                </section>
+              )}
             </div>
 
-            {/* Event Details */}
-            <div>
-              <h2 className="text-lg sm:text-xl md:text-xl lg:text-2xl font-martian-mono font-semibold text-white mb-2 sm:mb-3">
-                Event Details
-              </h2>
-              <div className="space-y-2">
-                {event.year && (
-                  <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20.2px] leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[32.64px] tracking-[0px] text-[#ABA9A7] font-martian-mono">
-                    <span className="text-white">Year:</span> {event.year}
-                  </p>
-                )}
-                {event.event_venue && (
-                  <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20.2px] leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[32.64px] tracking-[0px] text-[#ABA9A7] font-martian-mono">
-                    <span className="text-white">Venue:</span> {event.event_venue}
-                  </p>
-                )}
-                <br/>
-                <p className="font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20.2px] leading-[22px] sm:leading-[26px] md:leading-[30px] lg:leading-[32.64px] tracking-[0px] text-[#ABA9A7] font-martian-mono">
-                  {event.event_content &&
-                    event.event_content.split('\n').map((line, idx) => (
-                      <span key={idx} >
-                        {line}
-                        <br />
-                      </span>
-                    ))
-                  }
-                </p>
-              </div>
-            </div>
+            {/* Sidebar Column */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-24 space-y-6 sm:space-y-8">
+                {/* Event Details Card */}
+                <div
+                  className="border border-white/10 bg-white/5 backdrop-blur-sm p-4 sm:p-6
+                              before:absolute before:h-3 before:w-3 sm:before:h-4 sm:before:w-4 before:border-[#FFD022] before:border-t-2 before:border-l-2 before:top-0 before:left-0
+                              after:absolute after:h-3 after:w-3 sm:after:h-4 sm:after:w-4 after:border-[#FFD022] after:border-t-2 after:border-r-2 after:top-0 after:right-0
+                              relative"
+                >
+                  {/* Bottom corners */}
+                  <div className="absolute bottom-0 left-0 h-3 w-3 sm:h-4 sm:w-4 border-[#FFD022] border-b-2 border-l-2" />
+                  <div className="absolute bottom-0 right-0 h-3 w-3 sm:h-4 sm:w-4 border-[#FFD022] border-b-2 border-r-2" />
 
-            {/* Infinite Scrolling Images */}
-            <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] overflow-hidden py-4 sm:py-6 md:py-8">
-              <div className="flex animate-scroll">
-                {/* First set of images */}
-                <div className="flex flex-shrink-0 space-x-2 sm:space-x-3 md:space-x-4">
-                  {galleryImages.map((imageSrc, index) => (
-                    <div key={index} className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                      <Image
-                        src={bucketBase + event.year + "/" + imageSrc}
-                        alt={`Gallery image ${index + 1}`}
-                        width={256}
-                        height={160}
-                        className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                      />
-                    </div>
-                  ))}
-                </div>
-
-                {/* Duplicate set for seamless loop */}
-                <div className="flex flex-shrink-0 space-x-2 sm:space-x-3 md:space-x-4 ml-2 sm:ml-3 md:ml-4">
-                  {galleryImages.map((imageSrc, index) => (
-                    <div key={`dup-${index}`} className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-40 bg-gray-800 rounded-lg overflow-hidden">
-                      <Image
-                        src={bucketBase + event.year + "/" + imageSrc}
-                        alt={`Gallery image ${index + 1}`}
-                        width={256}
-                        height={160}
-                        className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
-                      />
-                    </div>
-                  ))}
+                  <h3 className="font-martian-mono text-lg sm:text-xl font-semibold text-white mb-4 sm:mb-6">
+                    Event Details
+                  </h3>
+                  <div className="space-y-3 sm:space-y-4">
+                    {event.year && (
+                      <div>
+                        <span className="font-martian-mono text-xs sm:text-sm text-[#ABA9A7] uppercase tracking-wider">
+                          Year
+                        </span>
+                        <p className="font-martian-mono text-sm sm:text-base text-white mt-1">
+                          {event.year}
+                        </p>
+                      </div>
+                    )}
+                    {event.event_venue && (
+                      <div>
+                        <span className="font-martian-mono text-xs sm:text-sm text-[#ABA9A7] uppercase tracking-wider">
+                          Venue
+                        </span>
+                        <p className="font-martian-mono text-sm sm:text-base text-white mt-1">
+                          {event.event_venue}
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Gallery Section */}
+          {shouldShowGallery && (
+            <section className="w-screen relative left-1/2 right-1/2 -mx-[50vw]">
+              <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px]">
+                <CircularGallery
+                  items={circularGalleryItems}
+                  bend={0}
+                  textColor="#ffffff"
+                  borderRadius={0.02}
+                  scrollEase={0.05}
+                  showText={false}
+                />
+              </div>
+            </section>
+          )}
         </div>
       </div>
     </div>

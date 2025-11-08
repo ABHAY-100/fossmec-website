@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import About from "@/components/About";
 import Events from "@/components/events/Events";
@@ -7,7 +8,7 @@ import Landing from "@/components/Landing";
 import Marquee from "@/components/Marquee";
 import Navbar from "@/components/Navbar";
 import Team from "@/components/Team";
-import LenisWrapper from "@/components/LenisWrapper";
+// import LenisWrapper from "@/utils/LenisWrapper";
 import bg from "@/assets/bg.svg";
 import Image from "next/image";
 

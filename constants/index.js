@@ -1,63 +1,30 @@
-// import AadithyaMadhav from "@/assets/Team/AadithyaMadhav.png";
-// import AdhishJosephShinu from "@/assets/Team/AdhishJosephShinu.png";
-// import AlanBiju from "@/assets/Team/AlanBiju.png";
-// import AlakaAJ from "@/assets/Team/AlakaAJ.png";
-// import AlfredJimmy from "@/assets/Team/AlfredJimmy.png";
-// import AnakhaSKumar from "@/assets/Team/AnakhaSKumar.png";
-// import AnavadyaNLakshmi from "@/assets/Team/AnavadyaNLakshmi.png";
-// import AnnuKuruvilla from "@/assets/Team/AnnuKuruvilla.png";
-// import ArjunCS from "@/assets/Team/ArjunCS.png";
-// import DeepakPNair from "@/assets/Team/DeepakPNair.png";
-// import JaimyRenji from "@/assets/Team/JaimyRenji.png";
-// import JeswinJ from "@/assets/Team/JeswinJ.png";
-// import JithinJagadeesh from "@/assets/Team/JithinJagadeesh.png";
-// import JozefAntonyNeelamkavil from "@/assets/Team/JozefAntonyNeelamkavil.png";
-// import KarthikGKumar from "@/assets/Team/KarthikGKumar.png";
-// import KhushiVed from "@/assets/Team/KhushiVed.png";
-// import KVVarunKrishnan from "@/assets/Team/KVVarunKrishnan.png";
-// import LisaVC from "@/assets/Team/LisaVC.png";
-// import MekhaL from "@/assets/Team/MekhaL.png";
-// import MohdYasirKN from "@/assets/Team/MohdYasirKN.png";
-// import NikhilM from "@/assets/Team/NikhilM.png";
-// import NikeshTV from "@/assets/Team/NikeshTV.png";
-// import NiyaShiyas from "@/assets/Team/NiyaShiyas.png";
-// import PranavPS from "@/assets/Team/PranavPS.png";
-// import RahulVS from "@/assets/Team/RahulVS.png";
-// import RoshinJimmy from "@/assets/Team/RoshinJimmy.png";
-// import SherilDominic from "@/assets/Team/SherilDominic.png";
-// import SreepriyaKM from "@/assets/Team/SreepriyaKM.png";
-// import SrilakshmiRanganath from "@/assets/Team/SrilakshmiRanganath.png";
-// import TheerthaAvinash from "@/assets/Team/TheerthaAvinash.png";
-// import VishnuRPotti from "@/assets/Team/VishnuRPotti.png";
-// import VasanthR from "@/assets/Team/VasanthR.png";
-// import JoelRoshan from "@/assets/Team/JoelRoshan.png";
-import DrSonyP from "@/assets/fossmec/DrSonyP.png";
-import MohammedYasirKN from "@/assets/fossmec/yasir.png";
-import VasanthR from "@/assets/fossmec/vasanth.png";
-import SreepriyaKM from "@/assets/fossmec/sreepriya.png";
-import AllanThomas from "@/assets/fossmec/allan.png";
-import KVVarunKrishnan from "@/assets/fossmec/varun.png";
-import NikeshTV from "@/assets/fossmec/nikesh.png";
-import PranavPS from "@/assets/fossmec/pranav.png";
-import BenFranklinMS from "@/assets/fossmec/benfranklin.png";
-import MaryJohn from "@/assets/fossmec/mary.png";
-import KhushiNileshVed from "@/assets/fossmec/khushi.png";
-import AnaghaDB from "@/assets/fossmec/anagha.png";
-import JaneetaJolly from "@/assets/fossmec/janeeta.png";
-import SteffiLazar from "@/assets/fossmec/steffi.png";
-import MidhunUnni from "@/assets/fossmec/midhun.png";
-import JoelRoshan from "@/assets/fossmec/joel.png";
-import AaronGeorgeAbraham from "@/assets/fossmec/aaron.png";
-import AsilMehaboobV from "@/assets/fossmec/asil.png";
-import GowriKrishnaKU from "@/assets/fossmec/gowrikrishna.png";
-import AbhayBalakrishnan from "@/assets/fossmec/abhay.png";
-import DijithDinesh from "@/assets/fossmec/dijith.png";
-import AdityaJFrankur from "@/assets/fossmec/aditya.png";
-import AnanKM from "@/assets/fossmec/anan.png";
-import AmithSreekumar from "@/assets/fossmec/amith.png";
-import AbhinKrishna from "@/assets/fossmec/abhin.png";
-import EwanJohnDennis from "@/assets/fossmec/ewan.png";
-import NimahZayn from "@/assets/fossmec/nimah.png";
+import DrSonyP from "@/assets/core25/DrSonyP.png";
+import MohammedYasirKN from "@/assets/core25/yasir.png";
+import VasanthR from "@/assets/core25/vasanth.png";
+import SreepriyaKM from "@/assets/core25/sreepriya.png";
+import AllanThomas from "@/assets/core25/allan.png";
+import KVVarunKrishnan from "@/assets/core25/varun.png";
+import NikeshTV from "@/assets/core25/nikesh.png";
+import PranavPS from "@/assets/core25/pranav.png";
+import BenFranklinMS from "@/assets/core25/benfranklin.png";
+import MaryJohn from "@/assets/core25/mary.png";
+import KhushiNileshVed from "@/assets/core25/khushi.png";
+import AnaghaDB from "@/assets/core25/anagha.png";
+import JaneetaJolly from "@/assets/core25/janeeta.png";
+import SteffiLazar from "@/assets/core25/steffi.png";
+import MidhunUnni from "@/assets/core25/midhun.png";
+import JoelRoshan from "@/assets/core25/joel.png";
+import AaronGeorgeAbraham from "@/assets/core25/aaron.png";
+import AsilMehaboobV from "@/assets/core25/asil.png";
+import GowriKrishnaKU from "@/assets/core25/gowrikrishna.png";
+import AbhayBalakrishnan from "@/assets/core25/abhay.png";
+import DijithDinesh from "@/assets/core25/dijith.png";
+import AdityaJFrankur from "@/assets/core25/aditya.png";
+import AnanKM from "@/assets/core25/anan.png";
+import AmithSreekumar from "@/assets/core25/amith.png";
+import AbhinKrishna from "@/assets/core25/abhin.png";
+import EwanJohnDennis from "@/assets/core25/ewan.png";
+import NimahZayn from "@/assets/core25/nimah.png";
 
 export const TEAM2025 = [
   {
@@ -103,7 +70,7 @@ export const TEAM2025 = [
     img: AllanThomas,
     linkedin: "https://in.linkedin.com/in/allan-thomas-530970285",
   },
-    
+
   {
     id: 5,
     value: "Item 5",
@@ -145,7 +112,6 @@ export const TEAM2025 = [
     position: "Marketing Sub-Lead",
     img: MaryJohn,
     linkedin: "https://in.linkedin.com/in/mary-john-056a00292",
-    
   },
   {
     id: 10,
@@ -154,7 +120,6 @@ export const TEAM2025 = [
     position: "Content Lead",
     img: KhushiNileshVed,
     linkedin: "https://in.linkedin.com/in/khushi-nilesh-ved",
-    
   },
   {
     id: 11,
@@ -189,7 +154,7 @@ export const TEAM2025 = [
     position: "Tech Lead",
     img: MidhunUnni,
     linkedin: "https://www.linkedin.com/in/midhun-unni/",
-    github:"http://github.com/midhununni457",
+    github: "http://github.com/midhununni457",
   },
   {
     id: 15,
@@ -207,7 +172,7 @@ export const TEAM2025 = [
     position: "Web Sub-Lead",
     img: AaronGeorgeAbraham,
     linkedin: "https://www.linkedin.com/in/aarongeorgeabraham/",
-    github: "http://github.com/Aaron-53" ,
+    github: "http://github.com/Aaron-53",
   },
   {
     id: 17,
@@ -234,7 +199,7 @@ export const TEAM2025 = [
     position: "UI/UX Lead",
     img: AbhayBalakrishnan,
     linkedin: "https://www.linkedin.com/in/abhaybalakrishnan/",
-    github:"https://github.com/ABHAY-100",
+    github: "https://github.com/ABHAY-100",
   },
   {
     id: 20,
@@ -287,7 +252,7 @@ export const TEAM2025 = [
     position: "Executive",
     img: EwanJohnDennis,
     linkedin: "https://www.linkedin.com/in/ewanjohndennis/",
-    github:" https://github.com/Ewanjohndennis",
+    github: " https://github.com/Ewanjohndennis",
   },
   {
     id: 26,
@@ -300,29 +265,29 @@ export const TEAM2025 = [
   },
 ];
 
-import AadithyaMadhavMemoji from "@/assets/Team/memoji/Aadithya_Madhav__Executive.png";
-import AdhishJosephShinuMemoji from "@/assets/Team/memoji/Adhish_Joseph_Shinu_Sub-Marketing_Lead.png";
-import AlanBijuMemoji from "@/assets/Team/memoji/Alan_Biju__Open_Hardware_Advocate.png";
-import AnavadyaNLakshmiMemoji from "@/assets/Team/memoji/Anavadya_N_Lakshmi__Design_Sub_Lead.png";
-import ArjunCSMemoji from "@/assets/Team/memoji/Arjun_C_S__Marketing_head.png";
-import ATheerthaMemoji from "@/assets/Team/memoji/A_Theertha__Secretary.png";
-import DeepakPNairMemoji from "@/assets/Team/memoji/Deepak_P_Nair_Content_Sub-Head.png";
-import JaimyRenjiMemoji from "@/assets/Team/memoji/Jaimy_Renji__Design_Lead.png";
-import JeswinJosephMemoji from "@/assets/Team/memoji/Jeswin_Joseph_Treasurer.png";
-import JoelRoshanMemoji from "@/assets/Team/memoji/Joel_Roshan__Web_Lead.png";
-import KarthikGKumarMemoji from "@/assets/Team/memoji/Karthik_G_Kumar__AI_ML_Lead.png";
-import KhushiVedMemoji from "@/assets/Team/memoji/Khushi_Ved__Tech_Lead.png";
-import KVVarunKrishnanMemoji from "@/assets/Team/memoji/KV_Varun_Krishnan_Vice_Chairperson.png";
-import MohammedYasirKNMemoji from "@/assets/Team/memoji/Mohammed_Yasir_K_N__Executive.png";
-import NikeshTVMemoji from "@/assets/Team/memoji/Nikesh_T_V__Events_Lead.png";
-import NikhilMMemoji from "@/assets/Team/memoji/Nikhil_M__Chairperson.png";
-import PranavPSMemoji from "@/assets/Team/memoji/Pranav_P_S__Operations_Lead.png";
-import RoshinJimmyMemoji from "@/assets/Team/memoji/Roshin_Jimmy_Joint_Secretary.png";
-import SherilDominicMemoji from "@/assets/Team/memoji/Sheril_Dominic__Events_sub_head.png";
-import SreepriaKMMemoji from "@/assets/Team/memoji/Sreepria_KM_Executive.png";
-import SrilakshmiRanganathMemoji from "@/assets/Team/memoji/Srilakshmi_R_Content_Head.png";
-import VasanthRMemoji from "@/assets/Team/memoji/Vasanth_R__Executive.png";
-import SonyMemoji from "@/assets/Team/memoji/sony_miss.png";
+import AadithyaMadhavMemoji from "@/assets/core24/Aadithya_Madhav__Executive.png";
+import AdhishJosephShinuMemoji from "@/assets/core24/Adhish_Joseph_Shinu_Sub-Marketing_Lead.png";
+import AlanBijuMemoji from "@/assets/core24/Alan_Biju__Open_Hardware_Advocate.png";
+import AnavadyaNLakshmiMemoji from "@/assets/core24/Anavadya_N_Lakshmi__Design_Sub_Lead.png";
+import ArjunCSMemoji from "@/assets/core24/Arjun_C_S__Marketing_head.png";
+import ATheerthaMemoji from "@/assets/core24/A_Theertha__Secretary.png";
+import DeepakPNairMemoji from "@/assets/core24/Deepak_P_Nair_Content_Sub-Head.png";
+import JaimyRenjiMemoji from "@/assets/core24/Jaimy_Renji__Design_Lead.png";
+import JeswinJosephMemoji from "@/assets/core24/Jeswin_Joseph_Treasurer.png";
+import JoelRoshanMemoji from "@/assets/core24/Joel_Roshan__Web_Lead.png";
+import KarthikGKumarMemoji from "@/assets/core24/Karthik_G_Kumar__AI_ML_Lead.png";
+import KhushiVedMemoji from "@/assets/core24/Khushi_Ved__Tech_Lead.png";
+import KVVarunKrishnanMemoji from "@/assets/core24/KV_Varun_Krishnan_Vice_Chairperson.png";
+import MohammedYasirKNMemoji from "@/assets/core24/Mohammed_Yasir_K_N__Executive.png";
+import NikeshTVMemoji from "@/assets/core24/Nikesh_T_V__Events_Lead.png";
+import NikhilMMemoji from "@/assets/core24/Nikhil_M__Chairperson.png";
+import PranavPSMemoji from "@/assets/core24/Pranav_P_S__Operations_Lead.png";
+import RoshinJimmyMemoji from "@/assets/core24/Roshin_Jimmy_Joint_Secretary.png";
+import SherilDominicMemoji from "@/assets/core24/Sheril_Dominic__Events_sub_head.png";
+import SreepriaKMMemoji from "@/assets/core24/Sreepria_KM_Executive.png";
+import SrilakshmiRanganathMemoji from "@/assets/core24/Srilakshmi_R_Content_Head.png";
+import VasanthRMemoji from "@/assets/core24/Vasanth_R__Executive.png";
+import SonyMemoji from "@/assets/core24/sony_miss.png";
 
 export const TEAM2024 = [
   {

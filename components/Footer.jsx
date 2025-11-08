@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-import bg from "@/assets/bg.svg";
 import { FaTelegramPlane } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaLinkedin } from "react-icons/fa";

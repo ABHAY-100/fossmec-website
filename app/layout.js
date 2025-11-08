@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Geist, Geist_Mono, Gamja_Flower} from "next/font/google";
+import { Geist, Geist_Mono, Gamja_Flower } from "next/font/google";
 import localFont from 'next/font/local';
 
 const offbit = localFont({
@@ -9,7 +9,7 @@ const offbit = localFont({
 
 const uncutSansVar = localFont({
   src: [
-    { 
+    {
       path: '../assets/fonts/UncutSans-Regular.woff',
       weight: '400',
       style: 'normal',

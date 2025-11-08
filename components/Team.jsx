@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import TeamsCard from "./TeamsCard";
 import {
@@ -9,8 +10,6 @@ import {
   TEAM2020,
   TEAM2025,
 } from "@/constants";
-import DrSonyP from "@/assets/Team/DrSonyP.png";
-import NoImage from "@/assets/noimg.png";
 
 const Team = () => {
   const [selectedYear, setSelectedYear] = useState("2025");

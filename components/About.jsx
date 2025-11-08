@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-import bg from "@/assets/bg.svg";
 
 const About = () => {
   return (
